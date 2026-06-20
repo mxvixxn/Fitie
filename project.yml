@@ -26,6 +26,25 @@ targets:
       path: Fitie/Fitie.entitlements
       properties:
         com.apple.developer.healthkit: true
+    dependencies:
+      - target: FitieWidgets
+        embed: true
+  FitieWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: FitieWidgets
+      - path: Fitie/Live/FitieActivityAttributes.swift
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: NO
+        PRODUCT_BUNDLE_IDENTIFIER: com.mxvixxn.Fitie.FitieWidgets
+        INFOPLIST_KEY_NSSupportsLiveActivities: YES
+    info:
+      path: FitieWidgets/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
   FitieTests:
     type: bundle.unit-test
     platform: iOS

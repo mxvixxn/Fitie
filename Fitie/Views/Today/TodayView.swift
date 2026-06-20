@@ -10,6 +10,7 @@ struct TodayView: View {
 
     @State private var showCheckIn = false
     @State private var showAddHabit = false
+    @State private var session = SessionController()
     let refresher: RefreshController
 
     private var today: Date { Calendar.current.startOfDay(for: Date()) }
@@ -56,6 +57,12 @@ struct TodayView: View {
             }
             .navigationTitle("오늘")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(session.isRunning ? "세션 종료" : "걷기 세션") {
+                        if session.isRunning { session.stop() }
+                        else { session.start(habitName: "걷기", goalMinutes: 10) }
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showAddHabit = true } label: { Image(systemName: "plus") }
                 }
