@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094D272119E17A6D20F3DC1F /* TemplatePhraserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC77D96C67C698A0D3D3D790 /* TemplatePhraserTests.swift */; };
 		0F7A2DFCB8C5DCD68C9CB729 /* HabitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE75249DD868B8FBFF62D53 /* HabitStatus.swift */; };
 		123CF3A4C2463941BAD3DC69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C45733D2F60E7CB27572A /* RootView.swift */; };
 		27CA0D8134EC4F74F3049585 /* HealthMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D782FC89556C14ABF984A9B8 /* HealthMetric.swift */; };
+		43633AA660CD23358AA327FC /* ConditionInsight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91774CDB198D7FFC3E3B59D /* ConditionInsight.swift */; };
+		664C8A175118654D50C27811 /* InsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1492BFB830FC0293F97E38 /* InsightEngine.swift */; };
 		77DBCE5F241092A0BB7BB57F /* FitieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEBBA4872EFBE973AD2E32 /* FitieApp.swift */; };
+		7D92145DD1EEE0F76156537F /* TemplatePhraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C2EFC95B982267993E561 /* TemplatePhraser.swift */; };
+		7F691D9F1A054293589D7A49 /* HabitEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DAEDDFC691A81E20B5C364 /* HabitEvaluator.swift */; };
 		A2457EDE2BFA6C4F180F4F48 /* InsightSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */; };
+		AA6FD87E0A94994DD38097BF /* HabitEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */; };
 		D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE0972096B7A30B12892F9F /* ConditionEntry.swift */; };
 		DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB34E9E656A515BF2DB3F3 /* DailyResult.swift */; };
 		F0445A4A0B0C0304B208449F /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1926AF7CB737512991DDAF53 /* Habit.swift */; };
+		FB1EEBB9C67F4F9155939C90 /* InsightPhraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850066F3CF1123F2886F228C /* InsightPhraser.swift */; };
 		FC04D4C6D4404E097B1DB965 /* VerificationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BF8DF173F3917FE03D07D /* VerificationRule.swift */; };
+		FD593A828E45AD98DF4AC3CA /* InsightEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352E5DD0B1E0410EDC8FC640 /* InsightEngineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,9 +40,17 @@
 		0CF80AFB34DDAEB0F5E882A2 /* Fitie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fitie.entitlements; sourceTree = "<group>"; };
 		1926AF7CB737512991DDAF53 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		2FE0972096B7A30B12892F9F /* ConditionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionEntry.swift; sourceTree = "<group>"; };
+		352E5DD0B1E0410EDC8FC640 /* InsightEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEngineTests.swift; sourceTree = "<group>"; };
 		6EFB34E9E656A515BF2DB3F3 /* DailyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyResult.swift; sourceTree = "<group>"; };
+		7E2C2EFC95B982267993E561 /* TemplatePhraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePhraser.swift; sourceTree = "<group>"; };
+		850066F3CF1123F2886F228C /* InsightPhraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightPhraser.swift; sourceTree = "<group>"; };
+		8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluatorTests.swift; sourceTree = "<group>"; };
 		9BFECC5EFBD89ED880F54729 /* FitieTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FitieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSnapshot.swift; sourceTree = "<group>"; };
+		AC77D96C67C698A0D3D3D790 /* TemplatePhraserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePhraserTests.swift; sourceTree = "<group>"; };
+		B7DAEDDFC691A81E20B5C364 /* HabitEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluator.swift; sourceTree = "<group>"; };
+		B91774CDB198D7FFC3E3B59D /* ConditionInsight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionInsight.swift; sourceTree = "<group>"; };
+		BE1492BFB830FC0293F97E38 /* InsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEngine.swift; sourceTree = "<group>"; };
 		BE8C45733D2F60E7CB27572A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D58A2266AC05568EFE2891E3 /* Fitie.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Fitie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AEBBA4872EFBE973AD2E32 /* FitieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitieApp.swift; sourceTree = "<group>"; };
@@ -50,6 +66,7 @@
 				0CF80AFB34DDAEB0F5E882A2 /* Fitie.entitlements */,
 				254F9AAE30CE59C76F5EC595 /* App */,
 				5BA17CDF9398864A353CF8AA /* Health */,
+				C5DCCFD1FF60827F39A2BFB6 /* Insights */,
 				A53AB434CD84B3D26D3A8426 /* Logic */,
 				304F8ADCAD893055958B5E29 /* Models */,
 				58E18A80E5EBEAF95450010F /* Views */,
@@ -114,14 +131,29 @@
 		A53AB434CD84B3D26D3A8426 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				B7DAEDDFC691A81E20B5C364 /* HabitEvaluator.swift */,
 				DBE75249DD868B8FBFF62D53 /* HabitStatus.swift */,
+				BE1492BFB830FC0293F97E38 /* InsightEngine.swift */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		C5DCCFD1FF60827F39A2BFB6 /* Insights */ = {
+			isa = PBXGroup;
+			children = (
+				B91774CDB198D7FFC3E3B59D /* ConditionInsight.swift */,
+				850066F3CF1123F2886F228C /* InsightPhraser.swift */,
+				7E2C2EFC95B982267993E561 /* TemplatePhraser.swift */,
+			);
+			path = Insights;
 			sourceTree = "<group>";
 		};
 		FDB400DE20B950502408B9DD /* FitieTests */ = {
 			isa = PBXGroup;
 			children = (
+				8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */,
+				352E5DD0B1E0410EDC8FC640 /* InsightEngineTests.swift */,
+				AC77D96C67C698A0D3D3D790 /* TemplatePhraserTests.swift */,
 			);
 			path = FitieTests;
 			sourceTree = "<group>";
@@ -208,6 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6FD87E0A94994DD38097BF /* HabitEvaluatorTests.swift in Sources */,
+				FD593A828E45AD98DF4AC3CA /* InsightEngineTests.swift in Sources */,
+				094D272119E17A6D20F3DC1F /* TemplatePhraserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,13 +251,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */,
+				43633AA660CD23358AA327FC /* ConditionInsight.swift in Sources */,
 				DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */,
 				77DBCE5F241092A0BB7BB57F /* FitieApp.swift in Sources */,
 				F0445A4A0B0C0304B208449F /* Habit.swift in Sources */,
+				7F691D9F1A054293589D7A49 /* HabitEvaluator.swift in Sources */,
 				0F7A2DFCB8C5DCD68C9CB729 /* HabitStatus.swift in Sources */,
 				27CA0D8134EC4F74F3049585 /* HealthMetric.swift in Sources */,
+				664C8A175118654D50C27811 /* InsightEngine.swift in Sources */,
+				FB1EEBB9C67F4F9155939C90 /* InsightPhraser.swift in Sources */,
 				A2457EDE2BFA6C4F180F4F48 /* InsightSnapshot.swift in Sources */,
 				123CF3A4C2463941BAD3DC69 /* RootView.swift in Sources */,
+				7D92145DD1EEE0F76156537F /* TemplatePhraser.swift in Sources */,
 				FC04D4C6D4404E097B1DB965 /* VerificationRule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
