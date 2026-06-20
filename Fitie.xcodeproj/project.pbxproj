@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F7A2DFCB8C5DCD68C9CB729 /* HabitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE75249DD868B8FBFF62D53 /* HabitStatus.swift */; };
+		123CF3A4C2463941BAD3DC69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C45733D2F60E7CB27572A /* RootView.swift */; };
+		27CA0D8134EC4F74F3049585 /* HealthMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D782FC89556C14ABF984A9B8 /* HealthMetric.swift */; };
+		77DBCE5F241092A0BB7BB57F /* FitieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEBBA4872EFBE973AD2E32 /* FitieApp.swift */; };
+		A2457EDE2BFA6C4F180F4F48 /* InsightSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */; };
+		D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE0972096B7A30B12892F9F /* ConditionEntry.swift */; };
+		DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB34E9E656A515BF2DB3F3 /* DailyResult.swift */; };
+		F0445A4A0B0C0304B208449F /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1926AF7CB737512991DDAF53 /* Habit.swift */; };
+		FC04D4C6D4404E097B1DB965 /* VerificationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BF8DF173F3917FE03D07D /* VerificationRule.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B479EF9588C4FED0AF54181E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DDEC6F114A2D0EC231C703B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24E87DB6C38EFF1B5845A7DC;
+			remoteInfo = Fitie;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0CF80AFB34DDAEB0F5E882A2 /* Fitie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fitie.entitlements; sourceTree = "<group>"; };
+		1926AF7CB737512991DDAF53 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
+		2FE0972096B7A30B12892F9F /* ConditionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionEntry.swift; sourceTree = "<group>"; };
+		6EFB34E9E656A515BF2DB3F3 /* DailyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyResult.swift; sourceTree = "<group>"; };
+		9BFECC5EFBD89ED880F54729 /* FitieTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FitieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSnapshot.swift; sourceTree = "<group>"; };
+		BE8C45733D2F60E7CB27572A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		D58A2266AC05568EFE2891E3 /* Fitie.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Fitie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6AEBBA4872EFBE973AD2E32 /* FitieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitieApp.swift; sourceTree = "<group>"; };
+		D782FC89556C14ABF984A9B8 /* HealthMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMetric.swift; sourceTree = "<group>"; };
+		D83BF8DF173F3917FE03D07D /* VerificationRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationRule.swift; sourceTree = "<group>"; };
+		DBE75249DD868B8FBFF62D53 /* HabitStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStatus.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		04A2AB20B9CA36D168FCFC4E /* Fitie */ = {
+			isa = PBXGroup;
+			children = (
+				0CF80AFB34DDAEB0F5E882A2 /* Fitie.entitlements */,
+				254F9AAE30CE59C76F5EC595 /* App */,
+				5BA17CDF9398864A353CF8AA /* Health */,
+				A53AB434CD84B3D26D3A8426 /* Logic */,
+				304F8ADCAD893055958B5E29 /* Models */,
+				58E18A80E5EBEAF95450010F /* Views */,
+			);
+			path = Fitie;
+			sourceTree = "<group>";
+		};
+		254F9AAE30CE59C76F5EC595 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D6AEBBA4872EFBE973AD2E32 /* FitieApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		304F8ADCAD893055958B5E29 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2FE0972096B7A30B12892F9F /* ConditionEntry.swift */,
+				6EFB34E9E656A515BF2DB3F3 /* DailyResult.swift */,
+				1926AF7CB737512991DDAF53 /* Habit.swift */,
+				A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */,
+				D83BF8DF173F3917FE03D07D /* VerificationRule.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		48B722F23942C3964F4CD28D = {
+			isa = PBXGroup;
+			children = (
+				04A2AB20B9CA36D168FCFC4E /* Fitie */,
+				FDB400DE20B950502408B9DD /* FitieTests */,
+				6554DDB4965C6974F0CE840F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		58E18A80E5EBEAF95450010F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE8C45733D2F60E7CB27572A /* RootView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BA17CDF9398864A353CF8AA /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				D782FC89556C14ABF984A9B8 /* HealthMetric.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		6554DDB4965C6974F0CE840F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D58A2266AC05568EFE2891E3 /* Fitie.app */,
+				9BFECC5EFBD89ED880F54729 /* FitieTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A53AB434CD84B3D26D3A8426 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				DBE75249DD868B8FBFF62D53 /* HabitStatus.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		FDB400DE20B950502408B9DD /* FitieTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FitieTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0FDD7D52BA07C403448B6EDD /* FitieTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60347B9FC92E93C54D21737C /* Build configuration list for PBXNativeTarget "FitieTests" */;
+			buildPhases = (
+				887A94A58069B2A3CFCDFC64 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94A9298ED7521D448943C8E4 /* PBXTargetDependency */,
+			);
+			name = FitieTests;
+			packageProductDependencies = (
+			);
+			productName = FitieTests;
+			productReference = 9BFECC5EFBD89ED880F54729 /* FitieTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		24E87DB6C38EFF1B5845A7DC /* Fitie */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54491FEEC6C99AB0AE28AD3D /* Build configuration list for PBXNativeTarget "Fitie" */;
+			buildPhases = (
+				D59A005B711385A78B4C859B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fitie;
+			packageProductDependencies = (
+			);
+			productName = Fitie;
+			productReference = D58A2266AC05568EFE2891E3 /* Fitie.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DDEC6F114A2D0EC231C703B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0FDD7D52BA07C403448B6EDD = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					24E87DB6C38EFF1B5845A7DC = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 023B49754F35E855610B5F1D /* Build configuration list for PBXProject "Fitie" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 48B722F23942C3964F4CD28D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 6554DDB4965C6974F0CE840F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				24E87DB6C38EFF1B5845A7DC /* Fitie */,
+				0FDD7D52BA07C403448B6EDD /* FitieTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		887A94A58069B2A3CFCDFC64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D59A005B711385A78B4C859B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */,
+				DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */,
+				77DBCE5F241092A0BB7BB57F /* FitieApp.swift in Sources */,
+				F0445A4A0B0C0304B208449F /* Habit.swift in Sources */,
+				0F7A2DFCB8C5DCD68C9CB729 /* HabitStatus.swift in Sources */,
+				27CA0D8134EC4F74F3049585 /* HealthMetric.swift in Sources */,
+				A2457EDE2BFA6C4F180F4F48 /* InsightSnapshot.swift in Sources */,
+				123CF3A4C2463941BAD3DC69 /* RootView.swift in Sources */,
+				FC04D4C6D4404E097B1DB965 /* VerificationRule.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94A9298ED7521D448943C8E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24E87DB6C38EFF1B5845A7DC /* Fitie */;
+			targetProxy = B479EF9588C4FED0AF54181E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		262817FFE15B8D19CD547554 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mxvixxn.Fitie;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3E0C2A48C7FAC9E55ED7130D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Fitie는 걸음·운동·수면 등 건강 데이터를 읽어 습관 달성을 자동으로 확인합니다.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		86A7476218509DBFE04C4C69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mxvixxn.FitieTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fitie.app/Fitie";
+			};
+			name = Debug;
+		};
+		9F1759EF5B4F799CB21134B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Fitie는 걸음·운동·수면 등 건강 데이터를 읽어 습관 달성을 자동으로 확인합니다.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		B35E99A34114A74E9302E063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mxvixxn.Fitie;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E81876CA37998698E2E000F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mxvixxn.FitieTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fitie.app/Fitie";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		023B49754F35E855610B5F1D /* Build configuration list for PBXProject "Fitie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E0C2A48C7FAC9E55ED7130D /* Debug */,
+				9F1759EF5B4F799CB21134B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		54491FEEC6C99AB0AE28AD3D /* Build configuration list for PBXNativeTarget "Fitie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B35E99A34114A74E9302E063 /* Debug */,
+				262817FFE15B8D19CD547554 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		60347B9FC92E93C54D21737C /* Build configuration list for PBXNativeTarget "FitieTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86A7476218509DBFE04C4C69 /* Debug */,
+				E81876CA37998698E2E000F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6DDEC6F114A2D0EC231C703B /* Project object */;
+}

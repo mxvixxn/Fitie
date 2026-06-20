@@ -1,0 +1,38 @@
+name: Fitie
+options:
+  bundleIdPrefix: com.mxvixxn
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_NSHealthShareUsageDescription: "Fitie는 걸음·운동·수면 등 건강 데이터를 읽어 습관 달성을 자동으로 확인합니다."
+    INFOPLIST_KEY_NSSupportsLiveActivities: YES
+    INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+    INFOPLIST_KEY_UILaunchScreen_Generation: YES
+targets:
+  Fitie:
+    type: application
+    platform: iOS
+    sources:
+      - path: Fitie
+    entitlements:
+      path: Fitie/Fitie.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+  FitieTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: FitieTests
+    dependencies:
+      - target: Fitie
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
