@@ -3,7 +3,7 @@ import SwiftData
 
 struct RootView: View {
     @State private var refresher: RefreshController
-    @State private var tab = 0
+    @State private var tab: Int
     private let health: HealthDataSource
 
     init(container: ModelContainer) {
@@ -13,6 +13,8 @@ struct RootView: View {
             container: container,
             health: health,
             phraser: FoundationModelsPhraser.makeAvailable()))
+        // Dev-only: jump to a tab on launch for previews/screenshots.
+        _tab = State(initialValue: Int(ProcessInfo.processInfo.environment["FITIE_TAB"] ?? "") ?? 0)
     }
 
     var body: some View {
