@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct TodayView: View {
+    @Environment(\.modelContext) private var context
     @Query(filter: #Predicate<Habit> { !$0.isArchived }, sort: \Habit.createdAt)
     private var habits: [Habit]
     @Query private var results: [DailyResult]
@@ -10,7 +11,9 @@ struct TodayView: View {
 
     @State private var showCheckIn = false
     @State private var showAddHabit = false
+    @State private var editingHabit: Habit?
     @State private var session = SessionController()
+    @State private var deleteTick = 0
     let refresher: RefreshController
     let onShowInsights: () -> Void
 
@@ -28,34 +31,11 @@ struct TodayView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: 18) {
+                    summaryHeader
                     ConditionCheckInCard(entry: todayCondition) { showCheckIn = true }
-
-                    VStack(alignment: .leading, spacing: 10) {
-                        HStack {
-                            Text("오늘의 습관").font(.headline)
-                            Spacer()
-                            Text("\(achievedCount) / \(habits.count) 달성")
-                                .font(.subheadline).foregroundStyle(.secondary)
-                        }
-                        .padding(.horizontal, 4)
-
-                        habitsCard
-                    }
-
-                    if let sentence = snapshots.first?.sentences.first {
-                        Button(action: onShowInsights) {
-                            HStack(spacing: 12) {
-                                Image(systemName: "sparkles").foregroundStyle(Theme.accent)
-                                Text(sentence).font(.callout).foregroundStyle(.primary)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Image(systemName: "chevron.right")
-                                    .font(.footnote).foregroundStyle(Theme.accent)
-                            }
-                            .glassCard(cornerRadius: 22, tint: Theme.mood.opacity(0.25))
-                        }
-                        .buttonStyle(.plain)
-                    }
+                    habitsSection
+                    insightTeaser
                 }
                 .padding(16)
                 .padding(.bottom, 8)
@@ -63,45 +43,150 @@ struct TodayView: View {
             .scrollContentBackground(.hidden)
             .screenBackground()
             .navigationTitle("오늘")
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(session.isRunning ? "세션 종료" : "걷기 세션") {
-                        if session.isRunning { session.stop() }
-                        else { session.start(habitName: "걷기", goalMinutes: 10) }
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button { showAddHabit = true } label: { Image(systemName: "plus") }
-                }
-            }
+            .toolbar { toolbarContent }
             .sheet(isPresented: $showCheckIn) {
                 ConditionCheckInSheet(day: today, existing: todayCondition)
             }
             .sheet(isPresented: $showAddHabit) { HabitEditSheet() }
-            .task { await refresher.run() }
+            .sheet(item: $editingHabit) { habit in HabitEditSheet(habit: habit) }
+            .sensoryFeedback(.impact(weight: .light), trigger: deleteTick)
             .refreshable { await refresher.run() }
         }
     }
 
-    @ViewBuilder private var habitsCard: some View {
-        Group {
-            if habits.isEmpty {
-                Text("오른쪽 위 + 로 첫 습관을 추가해보세요.")
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, 6)
-            } else {
-                VStack(spacing: 0) {
-                    ForEach(Array(habits.enumerated()), id: \.element.id) { index, habit in
-                        HabitRow(habit: habit, result: result(for: habit),
-                                 streak: StreakCalculator.current(for: habit.id, in: results))
-                        if index < habits.count - 1 {
-                            Divider().opacity(0.4)
-                        }
+    // MARK: Header
+
+    private var greeting: String {
+        switch Calendar.current.component(.hour, from: Date()) {
+        case 5..<12: return "좋은 아침이에요"
+        case 12..<18: return "좋은 오후예요"
+        default: return "좋은 저녁이에요"
+        }
+    }
+
+    private var summaryHeader: some View {
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(greeting).font(.title3).fontWeight(.bold)
+                Text(today.formatted(.dateTime.month().day().weekday(.wide)
+                    .locale(Locale(identifier: "ko_KR"))))
+                    .font(.subheadline).foregroundStyle(.secondary)
+                Spacer(minLength: 4)
+                if habits.isEmpty {
+                    Text("습관을 추가해 시작하세요").font(.footnote).foregroundStyle(.secondary)
+                } else if achievedCount == habits.count {
+                    Label("오늘 목표 달성!", systemImage: "checkmark.seal.fill")
+                        .font(.subheadline).fontWeight(.medium).foregroundStyle(Theme.achieved)
+                } else {
+                    Text("\(habits.count - achievedCount)개 남았어요")
+                        .font(.subheadline).foregroundStyle(.secondary)
+                }
+            }
+            Spacer()
+            DailyRing(achieved: achievedCount, total: habits.count)
+        }
+        .glassCard()
+    }
+
+    // MARK: Habits
+
+    private var habitsSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("오늘의 습관").font(.headline)
+                Spacer()
+                if !habits.isEmpty {
+                    Text("\(achievedCount) / \(habits.count) 달성")
+                        .font(.subheadline).foregroundStyle(.secondary)
+                }
+            }
+            .padding(.horizontal, 4)
+
+            if habits.isEmpty { emptyHabits } else { habitsCard }
+        }
+    }
+
+    private var habitsCard: some View {
+        VStack(spacing: 0) {
+            ForEach(Array(habits.enumerated()), id: \.element.id) { index, habit in
+                Button { editingHabit = habit } label: {
+                    HabitRow(habit: habit, result: result(for: habit),
+                             streak: StreakCalculator.current(for: habit.id, in: results))
+                }
+                .buttonStyle(.plain)
+                .contextMenu {
+                    Button { editingHabit = habit } label: { Label("편집", systemImage: "pencil") }
+                    Button(role: .destructive) { delete(habit) } label: {
+                        Label("삭제", systemImage: "trash")
                     }
                 }
+                if index < habits.count - 1 { Divider().opacity(0.4) }
             }
         }
         .glassCard()
+    }
+
+    private var emptyHabits: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "sparkles")
+                .font(.system(size: 34)).foregroundStyle(Theme.accent)
+            Text("첫 습관을 추가해보세요").font(.headline)
+            Text("걷기·물·운동 같은 습관을 만들면\nApple 건강이 자동으로 채워줘요.")
+                .font(.subheadline).foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+            Button { showAddHabit = true } label: {
+                Label("습관 추가", systemImage: "plus")
+            }
+            .buttonStyle(.glassProminent)
+            .padding(.top, 2)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 18)
+        .glassCard()
+    }
+
+    // MARK: Insight
+
+    @ViewBuilder private var insightTeaser: some View {
+        if let sentence = snapshots.first?.sentences.first {
+            Button(action: onShowInsights) {
+                HStack(spacing: 12) {
+                    Image(systemName: "sparkles").foregroundStyle(Theme.accent)
+                    Text(sentence).font(.callout).foregroundStyle(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Image(systemName: "chevron.right")
+                        .font(.footnote).foregroundStyle(Theme.accent)
+                }
+                .glassCard(cornerRadius: 22, tint: Theme.mood.opacity(0.25))
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    // MARK: Toolbar
+
+    @ToolbarContentBuilder private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button {
+                if session.isRunning { session.stop() } else { session.start(habitName: "걷기", goalMinutes: 10) }
+            } label: {
+                Label(session.isRunning ? "세션 종료" : "걷기 세션",
+                      systemImage: session.isRunning ? "stop.circle" : "figure.walk")
+            }
+            .sensoryFeedback(.impact, trigger: session.isRunning)
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button { showAddHabit = true } label: {
+                Image(systemName: "plus")
+            }
+            .accessibilityLabel("습관 추가")
+        }
+    }
+
+    private func delete(_ habit: Habit) {
+        NotificationService.cancelReminder(habitID: habit.id)
+        withAnimation { context.delete(habit) }
+        try? context.save()
+        deleteTick += 1
     }
 }

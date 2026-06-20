@@ -31,6 +31,9 @@ struct HabitRow: View {
             trailing
         }
         .padding(.vertical, 8)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(habit.name), \(subtitle)")
     }
 
     private var subtitle: String {

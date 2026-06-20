@@ -38,6 +38,7 @@
 		BC9577B17B8339A839DB3F57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9076D4D998005107F0DE3 /* SettingsView.swift */; };
 		C5A9BFCB166216DE5C3BB276 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ED02C2882CC04FFBCBA4F9 /* TodayView.swift */; };
 		CE8BEE7AEEDB3AC29281A6D0 /* FitieActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108682340094740BC14C6973 /* FitieActivityAttributes.swift */; };
+		D1201A10E22F49717A103222 /* DailyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E8FA9544638F8A81E7BB /* DailyRing.swift */; };
 		D64FA204EE4CA18F8D5D189F /* ConditionCheckInSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF905499D5E01E29C24DA9 /* ConditionCheckInSheet.swift */; };
 		D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE0972096B7A30B12892F9F /* ConditionEntry.swift */; };
 		DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB34E9E656A515BF2DB3F3 /* DailyResult.swift */; };
@@ -113,6 +114,7 @@
 		9BFECC5EFBD89ED880F54729 /* FitieTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FitieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSnapshot.swift; sourceTree = "<group>"; };
 		AC77D96C67C698A0D3D3D790 /* TemplatePhraserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePhraserTests.swift; sourceTree = "<group>"; };
+		AE76E8FA9544638F8A81E7BB /* DailyRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRing.swift; sourceTree = "<group>"; };
 		B29FC4D3B74464FF0D04B574 /* StreakCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCalculator.swift; sourceTree = "<group>"; };
 		B57019AF69CD267813BEAF73 /* HealthKitDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataSource.swift; sourceTree = "<group>"; };
 		B7DAEDDFC691A81E20B5C364 /* HabitEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluator.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				BE8C45733D2F60E7CB27572A /* RootView.swift */,
 				4396D3E059BD1F960E223E93 /* Theme.swift */,
+				B30A0BB1A061604DA9654B69 /* Components */,
 				C9C70E715A5A6A60CBD5E854 /* Habits */,
 				F91B8F873584A7EAD43EF6E7 /* Insights */,
 				C549DF53427E2C346E0704F1 /* Settings */,
@@ -250,6 +253,14 @@
 				B29FC4D3B74464FF0D04B574 /* StreakCalculator.swift */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		B30A0BB1A061604DA9654B69 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AE76E8FA9544638F8A81E7BB /* DailyRing.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		B632E7A356BFA76A0BEFA0B2 /* Services */ = {
@@ -442,6 +453,7 @@
 				D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */,
 				43633AA660CD23358AA327FC /* ConditionInsight.swift in Sources */,
 				DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */,
+				D1201A10E22F49717A103222 /* DailyRing.swift in Sources */,
 				CE8BEE7AEEDB3AC29281A6D0 /* FitieActivityAttributes.swift in Sources */,
 				77DBCE5F241092A0BB7BB57F /* FitieApp.swift in Sources */,
 				9E190393AF440A3700654A6D /* FoundationModelsPhraser.swift in Sources */,

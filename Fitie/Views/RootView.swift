@@ -31,5 +31,7 @@ struct RootView: View {
         }
         .tint(Theme.accent)
         .fontDesign(.rounded)
+        .environment(\.locale, Locale(identifier: "ko_KR"))
+        .task { await refresher.run() }
     }
 }

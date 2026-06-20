@@ -41,6 +41,16 @@ enum HealthMetric: String, Codable, CaseIterable, Identifiable, Sendable {
         case .sleepStart: return "moon.fill"
         }
     }
+
+    var verificationHint: String {
+        switch self {
+        case .steps: return "Apple 건강의 걸음 수로 자동 확인돼요."
+        case .exerciseMinutes: return "Apple 건강의 운동 시간으로 자동 확인돼요."
+        case .water: return "Apple 건강에 기록한 물 섭취량으로 확인돼요."
+        case .mindfulMinutes: return "Apple 건강의 마음챙김 기록으로 확인돼요."
+        case .sleepStart: return "수면 데이터의 취침 시각으로 확인돼요."
+        }
+    }
 }
 
 enum Comparison: String, Codable, Sendable {
