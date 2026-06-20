@@ -19,6 +19,25 @@ extension Color {
     }
 }
 
+enum AppearanceMode: String, CaseIterable, Identifiable {
+    case system, light, dark
+    var id: String { rawValue }
+    var label: String {
+        switch self {
+        case .system: return "시스템"
+        case .light: return "라이트"
+        case .dark: return "다크"
+        }
+    }
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system: return nil
+        case .light: return .light
+        case .dark: return .dark
+        }
+    }
+}
+
 enum Theme {
     // Accents (read well on both light and dark glass)
     static let accent = Color(hex: "5B6BB5")       // indigo-lavender (CTA / selection)
@@ -26,6 +45,10 @@ enum Theme {
     static let achieved = Color(hex: "55B98C")     // mint green
     static let streak = Color(hex: "E08A6E")       // soft coral
     static let inProgress = Color(hex: "CC8A45")   // soft amber
+
+    /// Pastel choices offered when customizing a habit's color.
+    static let palette = ["4FB58E", "4E92C9", "D08A5E", "8E84C9",
+                          "4FB0A6", "E08A6E", "5B6BB5", "C06AA6"]
 
     static func metricColor(_ metric: HealthMetric) -> Color {
         switch metric {

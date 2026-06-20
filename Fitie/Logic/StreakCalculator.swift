@@ -19,4 +19,26 @@ enum StreakCalculator {
         }
         return streak
     }
+
+    /// The longest run of consecutive achieved days ever recorded for a habit.
+    static func longest(for habitID: UUID, in results: [DailyResult],
+                        calendar: Calendar = .current) -> Int {
+        let days = Set(results
+            .filter { $0.habitID == habitID && $0.status == .achieved }
+            .map { calendar.startOfDay(for: $0.day) })
+        var best = 0
+        for day in days {
+            // only start counting from the beginning of a run
+            let previous = calendar.date(byAdding: .day, value: -1, to: day)!
+            if days.contains(previous) { continue }
+            var length = 0
+            var cursor = day
+            while days.contains(cursor) {
+                length += 1
+                cursor = calendar.date(byAdding: .day, value: 1, to: cursor)!
+            }
+            best = max(best, length)
+        }
+        return best
+    }
 }

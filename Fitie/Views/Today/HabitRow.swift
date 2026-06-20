@@ -5,7 +5,7 @@ struct HabitRow: View {
     let result: DailyResult?
     let streak: Int
 
-    private var metricColor: Color { Theme.metricColor(habit.rule.metric) }
+    private var metricColor: Color { habit.tintColor }
 
     private var measuredText: String {
         guard let measured = result?.measured else { return "오늘 밤 판정 예정" }

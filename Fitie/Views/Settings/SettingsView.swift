@@ -1,12 +1,25 @@
 import SwiftUI
+import SwiftData
 
 struct SettingsView: View {
     let health: HealthDataSource
+    @Environment(\.modelContext) private var context
+    @AppStorage("appearance") private var appearanceRaw = AppearanceMode.system.rawValue
     @State private var requested = false
+    @State private var showResetConfirm = false
 
     var body: some View {
         NavigationStack {
             Form {
+                Section("화면") {
+                    Picker("외형", selection: $appearanceRaw) {
+                        ForEach(AppearanceMode.allCases) { mode in
+                            Text(mode.label).tag(mode.rawValue)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+
                 Section {
                     Button {
                         Task { @MainActor in
@@ -45,9 +58,17 @@ struct SettingsView: View {
                         Label("버전", systemImage: "info.circle")
                     }
                     LabeledContent {
-                        Text("온디바이스 AI").foregroundStyle(.secondary)
+                        Text("온디바이스").foregroundStyle(.secondary)
                     } label: {
                         Label("인사이트 엔진", systemImage: "sparkles")
+                    }
+                    Label("모든 데이터는 기기에만 저장돼요.", systemImage: "lock.shield")
+                        .font(.subheadline)
+                }
+
+                Section {
+                    Button(role: .destructive) { showResetConfirm = true } label: {
+                        Label("모든 데이터 초기화", systemImage: "trash")
                     }
                 }
             }
@@ -55,6 +76,19 @@ struct SettingsView: View {
             .background(Theme.background.ignoresSafeArea())
             .tint(Theme.accent)
             .navigationTitle("설정")
+            .confirmationDialog("모든 습관·기록·인사이트가 삭제됩니다.",
+                                isPresented: $showResetConfirm, titleVisibility: .visible) {
+                Button("전부 삭제", role: .destructive, action: resetAll)
+                Button("취소", role: .cancel) {}
+            }
         }
+    }
+
+    private func resetAll() {
+        try? context.delete(model: Habit.self)
+        try? context.delete(model: DailyResult.self)
+        try? context.delete(model: ConditionEntry.self)
+        try? context.delete(model: InsightSnapshot.self)
+        try? context.save()
     }
 }

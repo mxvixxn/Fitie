@@ -4,6 +4,9 @@ import SwiftData
 struct RootView: View {
     @State private var refresher: RefreshController
     @State private var tab: Int
+    @State private var showWelcome = false
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
+    @AppStorage("appearance") private var appearanceRaw = AppearanceMode.system.rawValue
     private let health: HealthDataSource
 
     init(container: ModelContainer) {
@@ -13,8 +16,11 @@ struct RootView: View {
             container: container,
             health: health,
             phraser: FoundationModelsPhraser.makeAvailable()))
-        // Dev-only: jump to a tab on launch for previews/screenshots.
         _tab = State(initialValue: Int(ProcessInfo.processInfo.environment["FITIE_TAB"] ?? "") ?? 0)
+    }
+
+    private var colorScheme: ColorScheme? {
+        (AppearanceMode(rawValue: appearanceRaw) ?? .system).colorScheme
     }
 
     var body: some View {
@@ -32,6 +38,13 @@ struct RootView: View {
         .tint(Theme.accent)
         .fontDesign(.rounded)
         .environment(\.locale, Locale(identifier: "ko_KR"))
+        .preferredColorScheme(colorScheme)
         .task { await refresher.run() }
+        .onAppear { showWelcome = !hasOnboarded && !SampleData.isSeedMode }
+        .fullScreenCover(isPresented: $showWelcome) {
+            WelcomeView(
+                requestHealth: { try? await health.requestAuthorization() },
+                onFinish: { hasOnboarded = true; showWelcome = false })
+        }
     }
 }

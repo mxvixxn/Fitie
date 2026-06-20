@@ -12,6 +12,7 @@ struct HabitEditSheet: View {
     @State private var target: Double = 5000
     @State private var reminderOn = false
     @State private var reminderTime = Date()
+    @State private var colorHex = Theme.palette[6]
     @State private var saveTick = 0
 
     private var isEditing: Bool { habit != nil }
@@ -47,6 +48,30 @@ struct HabitEditSheet: View {
                 } footer: {
                     Label(metric.verificationHint, systemImage: "checkmark.seal")
                         .font(.caption)
+                }
+
+                Section("색상") {
+                    HStack(spacing: 14) {
+                        ForEach(Theme.palette, id: \.self) { hex in
+                            Circle()
+                                .fill(Color(hex: hex))
+                                .frame(width: 30, height: 30)
+                                .overlay {
+                                    if hex == colorHex {
+                                        Image(systemName: "checkmark")
+                                            .font(.caption.weight(.bold))
+                                            .foregroundStyle(.white)
+                                    }
+                                }
+                                .overlay(Circle().strokeBorder(.primary.opacity(hex == colorHex ? 0.25 : 0),
+                                                               lineWidth: 2))
+                                .onTapGesture { colorHex = hex }
+                                .accessibilityLabel("색상")
+                                .accessibilityAddTraits(hex == colorHex ? [.isSelected] : [])
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
                 }
 
                 Section("리마인더") {
@@ -105,6 +130,7 @@ struct HabitEditSheet: View {
         let rule = habit.rule
         metric = rule.metric
         target = rule.metric == .sleepStart ? rule.target / 60 : rule.target
+        colorHex = habit.colorHex.isEmpty ? Theme.palette[6] : habit.colorHex
         if let h = habit.reminderHour, let m = habit.reminderMinute {
             reminderOn = true
             reminderTime = Calendar.current.date(bySettingHour: h, minute: m, second: 0, of: Date()) ?? Date()
@@ -114,8 +140,9 @@ struct HabitEditSheet: View {
     private func save() {
         let storedTarget = metric == .sleepStart ? target * 60 : target
         let rule = VerificationRule(metric: metric, target: storedTarget)
-        let target = habit ?? Habit(name: name, emoji: "", colorHex: "#5B6BB5", rule: rule)
+        let target = habit ?? Habit(name: name, emoji: "", colorHex: colorHex, rule: rule)
         target.name = name.trimmingCharacters(in: .whitespaces)
+        target.colorHex = colorHex
         target.rule = rule
 
         if reminderOn {

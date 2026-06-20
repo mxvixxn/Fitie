@@ -26,6 +26,9 @@ targets:
       path: Fitie/Fitie.entitlements
       properties:
         com.apple.developer.healthkit: true
+    settings:
+      base:
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     dependencies:
       - target: FitieWidgets
         embed: true

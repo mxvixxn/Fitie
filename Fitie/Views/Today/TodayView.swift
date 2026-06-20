@@ -14,6 +14,9 @@ struct TodayView: View {
     @State private var editingHabit: Habit?
     @State private var session = SessionController()
     @State private var deleteTick = 0
+    @State private var showConfetti = false
+    @State private var celebrated = false
+    @State private var path = NavigationPath()
     let refresher: RefreshController
     let onShowInsights: () -> Void
 
@@ -29,7 +32,7 @@ struct TodayView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ScrollView {
                 VStack(spacing: 18) {
                     summaryHeader
@@ -44,12 +47,38 @@ struct TodayView: View {
             .screenBackground()
             .navigationTitle("오늘")
             .toolbar { toolbarContent }
+            .navigationDestination(for: UUID.self) { id in
+                if let habit = habits.first(where: { $0.id == id }) {
+                    HabitDetailView(habit: habit)
+                }
+            }
             .sheet(isPresented: $showCheckIn) {
                 ConditionCheckInSheet(day: today, existing: todayCondition)
             }
             .sheet(isPresented: $showAddHabit) { HabitEditSheet() }
             .sheet(item: $editingHabit) { habit in HabitEditSheet(habit: habit) }
             .sensoryFeedback(.impact(weight: .light), trigger: deleteTick)
+            .sensoryFeedback(.success, trigger: showConfetti)
+            .overlay(alignment: .top) {
+                if showConfetti { ConfettiView().padding(.top, 90) }
+            }
+            .onChange(of: achievedCount) { _, newValue in
+                if !habits.isEmpty && newValue == habits.count {
+                    if !celebrated {
+                        celebrated = true
+                        showConfetti = true
+                        Task { try? await Task.sleep(for: .seconds(2)); showConfetti = false }
+                    }
+                } else {
+                    celebrated = false
+                }
+            }
+            .onAppear {
+                if ProcessInfo.processInfo.environment["FITIE_DETAIL"] == "1",
+                   path.isEmpty, let first = habits.first {
+                    path.append(first.id)
+                }
+            }
             .refreshable { await refresher.run() }
         }
     }
@@ -77,6 +106,7 @@ struct TodayView: View {
                 } else if achievedCount == habits.count {
                     Label("오늘 목표 달성!", systemImage: "checkmark.seal.fill")
                         .font(.subheadline).fontWeight(.medium).foregroundStyle(Theme.achieved)
+                        .symbolEffect(.bounce, value: achievedCount)
                 } else {
                     Text("\(habits.count - achievedCount)개 남았어요")
                         .font(.subheadline).foregroundStyle(.secondary)
@@ -109,7 +139,7 @@ struct TodayView: View {
     private var habitsCard: some View {
         VStack(spacing: 0) {
             ForEach(Array(habits.enumerated()), id: \.element.id) { index, habit in
-                Button { editingHabit = habit } label: {
+                NavigationLink(value: habit.id) {
                     HabitRow(habit: habit, result: result(for: habit),
                              streak: StreakCalculator.current(for: habit.id, in: results))
                 }

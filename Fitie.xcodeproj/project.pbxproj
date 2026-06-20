@@ -8,16 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		05D663116E341D87D43B20B9 /* HealthKitDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57019AF69CD267813BEAF73 /* HealthKitDataSource.swift */; };
+		0715822D49C308FA40E9E2D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A19017B709804CB5B43FD39 /* Assets.xcassets */; };
 		094D272119E17A6D20F3DC1F /* TemplatePhraserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC77D96C67C698A0D3D3D790 /* TemplatePhraserTests.swift */; };
 		0F7A2DFCB8C5DCD68C9CB729 /* HabitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE75249DD868B8FBFF62D53 /* HabitStatus.swift */; };
 		123CF3A4C2463941BAD3DC69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C45733D2F60E7CB27572A /* RootView.swift */; };
 		1415A1E80377A6B367B30583 /* RefreshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2243485869C18297B0DFE /* RefreshService.swift */; };
 		1C14D839A63212370DB51AE3 /* RefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255AF20D3E9C67AC23B41978 /* RefreshController.swift */; };
+		238D14545D73F89A7722BDBC /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381EDFB4029956ABFD12512B /* HabitDetailView.swift */; };
 		23D553B683BF0C002BC9031F /* FitieLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5FC1808CF48FABE97DEFB /* FitieLiveActivity.swift */; };
 		27CA0D8134EC4F74F3049585 /* HealthMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D782FC89556C14ABF984A9B8 /* HealthMetric.swift */; };
 		2958FC42D67A14D1FDD5993D /* FitieActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108682340094740BC14C6973 /* FitieActivityAttributes.swift */; };
+		2D2F40C02252306DA8CE4DE6 /* BrandMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C892D64C64CB31E41421C20 /* BrandMark.swift */; };
 		2F8A7CC8EDE5923D14FCD51D /* MockHealthDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66616C5F68284AA2C7EC9E15 /* MockHealthDataSource.swift */; };
+		33C48ED75012D1E1B0CEBDE7 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE2495845CC62C8AF2EA1B /* ConfettiView.swift */; };
 		43633AA660CD23358AA327FC /* ConditionInsight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91774CDB198D7FFC3E3B59D /* ConditionInsight.swift */; };
+		4D8644323ABBEACF2B220EBF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4786BF23D0317962C057A268 /* WelcomeView.swift */; };
 		664C8A175118654D50C27811 /* InsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1492BFB830FC0293F97E38 /* InsightEngine.swift */; };
 		758CE5BD6B16809BAC36FC0B /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7B2EF58F6CD0C1B8247218 /* SessionController.swift */; };
 		77DBCE5F241092A0BB7BB57F /* FitieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AEBBA4872EFBE973AD2E32 /* FitieApp.swift */; };
@@ -35,6 +40,7 @@
 		A84A1E2C1F082BF883E3EE39 /* ConditionCheckInCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3E20117229B4E8D4D7CE8 /* ConditionCheckInCard.swift */; };
 		AA6FD87E0A94994DD38097BF /* HabitEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */; };
 		B6C15FC433E0B1B425839259 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B87603E171AF38721E319 /* InsightsView.swift */; };
+		B9574F360D593E99C2607EC7 /* HabitTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DA6C29FF7C5388035669E9 /* HabitTint.swift */; };
 		BC9577B17B8339A839DB3F57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9076D4D998005107F0DE3 /* SettingsView.swift */; };
 		C5A9BFCB166216DE5C3BB276 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ED02C2882CC04FFBCBA4F9 /* TodayView.swift */; };
 		CE8BEE7AEEDB3AC29281A6D0 /* FitieActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108682340094740BC14C6973 /* FitieActivityAttributes.swift */; };
@@ -84,6 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A19017B709804CB5B43FD39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0CF80AFB34DDAEB0F5E882A2 /* Fitie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fitie.entitlements; sourceTree = "<group>"; };
 		108682340094740BC14C6973 /* FitieActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitieActivityAttributes.swift; sourceTree = "<group>"; };
 		13ED02C2882CC04FFBCBA4F9 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
@@ -97,10 +104,14 @@
 		2FE0972096B7A30B12892F9F /* ConditionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionEntry.swift; sourceTree = "<group>"; };
 		334772AC493A52A17636EE6B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		352E5DD0B1E0410EDC8FC640 /* InsightEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEngineTests.swift; sourceTree = "<group>"; };
+		381EDFB4029956ABFD12512B /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		4396D3E059BD1F960E223E93 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		46D5FC1808CF48FABE97DEFB /* FitieLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitieLiveActivity.swift; sourceTree = "<group>"; };
+		4786BF23D0317962C057A268 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		47DA6C29FF7C5388035669E9 /* HabitTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTint.swift; sourceTree = "<group>"; };
 		4D7B2EF58F6CD0C1B8247218 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		52C13834AF87F742346A742E /* RefreshServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshServiceTests.swift; sourceTree = "<group>"; };
+		5C892D64C64CB31E41421C20 /* BrandMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandMark.swift; sourceTree = "<group>"; };
 		5FA3E20117229B4E8D4D7CE8 /* ConditionCheckInCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionCheckInCard.swift; sourceTree = "<group>"; };
 		66616C5F68284AA2C7EC9E15 /* MockHealthDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHealthDataSource.swift; sourceTree = "<group>"; };
 		6AE0BA05A52FF3A6E66991D6 /* FoundationModelsPhraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsPhraser.swift; sourceTree = "<group>"; };
@@ -120,6 +131,7 @@
 		B7DAEDDFC691A81E20B5C364 /* HabitEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluator.swift; sourceTree = "<group>"; };
 		B91774CDB198D7FFC3E3B59D /* ConditionInsight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionInsight.swift; sourceTree = "<group>"; };
 		B95B87603E171AF38721E319 /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		BABE2495845CC62C8AF2EA1B /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		BCB9076D4D998005107F0DE3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BE1492BFB830FC0293F97E38 /* InsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEngine.swift; sourceTree = "<group>"; };
 		BE8C45733D2F60E7CB27572A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -136,6 +148,7 @@
 		04A2AB20B9CA36D168FCFC4E /* Fitie */ = {
 			isa = PBXGroup;
 			children = (
+				0A19017B709804CB5B43FD39 /* Assets.xcassets */,
 				0CF80AFB34DDAEB0F5E882A2 /* Fitie.entitlements */,
 				254F9AAE30CE59C76F5EC595 /* App */,
 				5BA17CDF9398864A353CF8AA /* Health */,
@@ -182,11 +195,13 @@
 		58E18A80E5EBEAF95450010F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				47DA6C29FF7C5388035669E9 /* HabitTint.swift */,
 				BE8C45733D2F60E7CB27572A /* RootView.swift */,
 				4396D3E059BD1F960E223E93 /* Theme.swift */,
 				B30A0BB1A061604DA9654B69 /* Components */,
 				C9C70E715A5A6A60CBD5E854 /* Habits */,
 				F91B8F873584A7EAD43EF6E7 /* Insights */,
+				89CE1C1F662FD42907EB7C8B /* Onboarding */,
 				C549DF53427E2C346E0704F1 /* Settings */,
 				58F671845E29404FE3CD5E57 /* Today */,
 			);
@@ -244,6 +259,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		89CE1C1F662FD42907EB7C8B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				4786BF23D0317962C057A268 /* WelcomeView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		A53AB434CD84B3D26D3A8426 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +281,8 @@
 		B30A0BB1A061604DA9654B69 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5C892D64C64CB31E41421C20 /* BrandMark.swift */,
+				BABE2495845CC62C8AF2EA1B /* ConfettiView.swift */,
 				AE76E8FA9544638F8A81E7BB /* DailyRing.swift */,
 			);
 			path = Components;
@@ -297,6 +322,7 @@
 		C9C70E715A5A6A60CBD5E854 /* Habits */ = {
 			isa = PBXGroup;
 			children = (
+				381EDFB4029956ABFD12512B /* HabitDetailView.swift */,
 				F9402741585D0D61CB1AA361 /* HabitEditSheet.swift */,
 			);
 			path = Habits;
@@ -364,6 +390,7 @@
 			buildConfigurationList = 54491FEEC6C99AB0AE28AD3D /* Build configuration list for PBXNativeTarget "Fitie" */;
 			buildPhases = (
 				D59A005B711385A78B4C859B /* Sources */,
+				7B14179871E3254DC9B12E0A /* Resources */,
 				153B92844F8E22148F1F949B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -422,6 +449,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		7B14179871E3254DC9B12E0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0715822D49C308FA40E9E2D6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		887A94A58069B2A3CFCDFC64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -448,20 +486,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2F40C02252306DA8CE4DE6 /* BrandMark.swift in Sources */,
 				A84A1E2C1F082BF883E3EE39 /* ConditionCheckInCard.swift in Sources */,
 				D64FA204EE4CA18F8D5D189F /* ConditionCheckInSheet.swift in Sources */,
 				D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */,
 				43633AA660CD23358AA327FC /* ConditionInsight.swift in Sources */,
+				33C48ED75012D1E1B0CEBDE7 /* ConfettiView.swift in Sources */,
 				DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */,
 				D1201A10E22F49717A103222 /* DailyRing.swift in Sources */,
 				CE8BEE7AEEDB3AC29281A6D0 /* FitieActivityAttributes.swift in Sources */,
 				77DBCE5F241092A0BB7BB57F /* FitieApp.swift in Sources */,
 				9E190393AF440A3700654A6D /* FoundationModelsPhraser.swift in Sources */,
 				F0445A4A0B0C0304B208449F /* Habit.swift in Sources */,
+				238D14545D73F89A7722BDBC /* HabitDetailView.swift in Sources */,
 				93EF0089012549F071733C51 /* HabitEditSheet.swift in Sources */,
 				7F691D9F1A054293589D7A49 /* HabitEvaluator.swift in Sources */,
 				EEC0FFA887CED00D253FA5BD /* HabitRow.swift in Sources */,
 				0F7A2DFCB8C5DCD68C9CB729 /* HabitStatus.swift in Sources */,
+				B9574F360D593E99C2607EC7 /* HabitTint.swift in Sources */,
 				F981F417B18B10EB3A9BB9FC /* HealthDataSource.swift in Sources */,
 				05D663116E341D87D43B20B9 /* HealthKitDataSource.swift in Sources */,
 				27CA0D8134EC4F74F3049585 /* HealthMetric.swift in Sources */,
@@ -483,6 +525,7 @@
 				EEB127EB16CD5A047B57B06E /* Theme.swift in Sources */,
 				C5A9BFCB166216DE5C3BB276 /* TodayView.swift in Sources */,
 				FC04D4C6D4404E097B1DB965 /* VerificationRule.swift in Sources */,
+				4D8644323ABBEACF2B220EBF /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -693,6 +737,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				LD_RUNPATH_SEARCH_PATHS = (
