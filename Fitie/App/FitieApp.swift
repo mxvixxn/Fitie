@@ -3,9 +3,13 @@ import SwiftData
 
 @main
 struct FitieApp: App {
-    let container: ModelContainer = {
-        try! ModelContainer(for: Habit.self, DailyResult.self, ConditionEntry.self, InsightSnapshot.self)
-    }()
+    let container: ModelContainer
+
+    init() {
+        container = try! ModelContainer(for: Habit.self, DailyResult.self,
+                                        ConditionEntry.self, InsightSnapshot.self)
+        SampleData.seedIfRequested(container)
+    }
 
     var body: some Scene {
         WindowGroup {

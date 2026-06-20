@@ -16,7 +16,11 @@ final class RefreshController {
     func run() async {
         let context = container.mainContext
         let service = RefreshService(health: health, phraser: phraser)
-        try? await service.refreshToday(context: context)
+        // In seed/demo mode, keep the seeded "today" snapshot instead of overwriting
+        // it from HealthKit (which is empty on a fresh Simulator).
+        if !SampleData.isSeedMode {
+            try? await service.refreshToday(context: context)
+        }
         try? await service.recomputeInsights(context: context)
     }
 }

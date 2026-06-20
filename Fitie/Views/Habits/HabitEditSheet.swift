@@ -43,6 +43,10 @@ struct HabitEditSheet: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Theme.background.ignoresSafeArea())
+            .fontDesign(.rounded)
+            .tint(Theme.accent)
             .navigationTitle("새 습관")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

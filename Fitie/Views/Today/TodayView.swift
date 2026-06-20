@@ -12,6 +12,7 @@ struct TodayView: View {
     @State private var showAddHabit = false
     @State private var session = SessionController()
     let refresher: RefreshController
+    let onShowInsights: () -> Void
 
     private var today: Date { Calendar.current.startOfDay(for: Date()) }
     private var todayCondition: ConditionEntry? {
@@ -26,35 +27,41 @@ struct TodayView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section {
+            ScrollView {
+                VStack(spacing: 16) {
                     ConditionCheckInCard(entry: todayCondition) { showCheckIn = true }
-                        .listRowInsets(EdgeInsets())
-                        .listRowBackground(Color.clear)
+
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack {
+                            Text("오늘의 습관").font(.headline)
+                            Spacer()
+                            Text("\(achievedCount) / \(habits.count) 달성")
+                                .font(.subheadline).foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 4)
+
+                        habitsCard
+                    }
+
+                    if let sentence = snapshots.first?.sentences.first {
+                        Button(action: onShowInsights) {
+                            HStack(spacing: 12) {
+                                Image(systemName: "sparkles").foregroundStyle(Theme.accent)
+                                Text(sentence).font(.callout).foregroundStyle(.primary)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote).foregroundStyle(Theme.accent)
+                            }
+                            .glassCard(cornerRadius: 22, tint: Theme.mood.opacity(0.25))
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
-                Section {
-                    ForEach(habits) { habit in
-                        HabitRow(habit: habit, result: result(for: habit),
-                                 streak: StreakCalculator.current(for: habit.id, in: results))
-                    }
-                    if habits.isEmpty {
-                        Text("오른쪽 위 + 로 첫 습관을 추가해보세요.")
-                            .foregroundStyle(.secondary)
-                    }
-                } header: {
-                    HStack {
-                        Text("오늘의 습관")
-                        Spacer()
-                        Text("\(achievedCount) / \(habits.count) 달성").foregroundStyle(.secondary)
-                    }
-                }
-                if let sentence = snapshots.first?.sentences.first {
-                    Section {
-                        Label(sentence, systemImage: "sparkles")
-                            .font(.callout)
-                    }
-                }
+                .padding(16)
+                .padding(.bottom, 8)
             }
+            .scrollContentBackground(.hidden)
+            .screenBackground()
             .navigationTitle("오늘")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -74,5 +81,27 @@ struct TodayView: View {
             .task { await refresher.run() }
             .refreshable { await refresher.run() }
         }
+    }
+
+    @ViewBuilder private var habitsCard: some View {
+        Group {
+            if habits.isEmpty {
+                Text("오른쪽 위 + 로 첫 습관을 추가해보세요.")
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical, 6)
+            } else {
+                VStack(spacing: 0) {
+                    ForEach(Array(habits.enumerated()), id: \.element.id) { index, habit in
+                        HabitRow(habit: habit, result: result(for: habit),
+                                 streak: StreakCalculator.current(for: habit.id, in: results))
+                        if index < habits.count - 1 {
+                            Divider().opacity(0.4)
+                        }
+                    }
+                }
+            }
+        }
+        .glassCard()
     }
 }

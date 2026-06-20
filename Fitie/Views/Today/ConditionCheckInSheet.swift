@@ -26,6 +26,10 @@ struct ConditionCheckInSheet: View {
                     TextField("한 줄 메모 (선택)", text: $note, axis: .vertical)
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Theme.background.ignoresSafeArea())
+            .fontDesign(.rounded)
+            .tint(Theme.accent)
             .navigationTitle("오늘 컨디션")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
