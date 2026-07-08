@@ -141,16 +141,27 @@ struct TodayView: View {
     private var habitsCard: some View {
         VStack(spacing: 0) {
             ForEach(Array(habits.enumerated()), id: \.element.id) { index, habit in
-                NavigationLink(value: habit.id) {
-                    HabitRow(habit: habit, result: result(for: habit),
-                             streak: StreakCalculator.current(for: habit.id, in: results),
-                             onToggle: { toggleManual(habit) })
-                }
-                .buttonStyle(.plain)
-                .contextMenu {
-                    Button { editingHabit = habit } label: { Label("편집", systemImage: "pencil") }
-                    Button(role: .destructive) { delete(habit) } label: {
-                        Label("삭제", systemImage: "trash")
+                HStack(spacing: 8) {
+                    NavigationLink(value: habit.id) {
+                        HabitRow(habit: habit, result: result(for: habit),
+                                 streak: StreakCalculator.current(for: habit.id, in: results))
+                    }
+                    .buttonStyle(.plain)
+                    .contextMenu {
+                        Button { editingHabit = habit } label: { Label("편집", systemImage: "pencil") }
+                        Button(role: .destructive) { delete(habit) } label: {
+                            Label("삭제", systemImage: "trash")
+                        }
+                    }
+                    if habit.rule.metric == .manual {
+                        Button(action: { toggleManual(habit) }) {
+                            Image(systemName: result(for: habit)?.status == .achieved ? "checkmark.circle.fill" : "circle")
+                                .font(.title2)
+                                .foregroundStyle(result(for: habit)?.status == .achieved ? Theme.achieved : Color(.tertiaryLabel))
+                                .contentTransition(.symbolEffect(.replace))
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(result(for: habit)?.status == .achieved ? "완료 해제" : "완료로 표시")
                     }
                 }
                 if index < habits.count - 1 { Divider() }
@@ -225,14 +236,16 @@ struct TodayView: View {
     }
 
     private func toggleManual(_ habit: Habit) {
-        if result(for: habit)?.status == .achieved {
-            Store.upsertDailyResult(context, habitID: habit.id, day: today,
-                                     status: .pending, measured: nil, source: .manual)
-        } else {
-            Store.upsertDailyResult(context, habitID: habit.id, day: today,
-                                     status: .achieved, measured: 1, source: .manual)
+        withAnimation {
+            if result(for: habit)?.status == .achieved {
+                Store.upsertDailyResult(context, habitID: habit.id, day: today,
+                                         status: .pending, measured: nil, source: .manual)
+            } else {
+                Store.upsertDailyResult(context, habitID: habit.id, day: today,
+                                         status: .achieved, measured: 1, source: .manual)
+            }
+            try? context.save()
         }
-        try? context.save()
         manualTick += 1
     }
 }

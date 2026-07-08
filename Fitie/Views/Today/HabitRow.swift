@@ -4,7 +4,6 @@ struct HabitRow: View {
     let habit: Habit
     let result: DailyResult?
     let streak: Int
-    var onToggle: () -> Void = {}
 
     private var metricColor: Color { habit.tintColor }
 
@@ -55,16 +54,7 @@ struct HabitRow: View {
                 Label("\(streak)", systemImage: "flame.fill")
                     .font(.caption2).foregroundStyle(Theme.streak).labelStyle(.titleAndIcon)
             }
-            if habit.rule.metric == .manual {
-                Button(action: onToggle) {
-                    Image(systemName: result?.status == .achieved ? "checkmark.circle.fill" : "circle")
-                        .font(.title2)
-                        .foregroundStyle(result?.status == .achieved ? Theme.achieved : Color(.tertiaryLabel))
-                        .contentTransition(.symbolEffect(.replace))
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel(result?.status == .achieved ? "완료 해제" : "완료로 표시")
-            } else {
+            if habit.rule.metric != .manual {
                 switch result?.status {
                 case .achieved:
                     Image(systemName: "checkmark.circle.fill")
