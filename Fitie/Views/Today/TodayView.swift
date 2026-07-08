@@ -14,6 +14,7 @@ struct TodayView: View {
     @State private var editingHabit: Habit?
     @State private var session = SessionController()
     @State private var deleteTick = 0
+    @State private var manualTick = 0
     @State private var showConfetti = false
     @State private var celebrated = false
     @State private var path = NavigationPath()
@@ -58,6 +59,7 @@ struct TodayView: View {
             .sheet(isPresented: $showAddHabit) { HabitEditSheet() }
             .sheet(item: $editingHabit) { habit in HabitEditSheet(habit: habit) }
             .sensoryFeedback(.impact(weight: .light), trigger: deleteTick)
+            .sensoryFeedback(.impact(weight: .light), trigger: manualTick)
             .sensoryFeedback(.success, trigger: showConfetti)
             .overlay(alignment: .top) {
                 if showConfetti { ConfettiView().padding(.top, 90) }
@@ -141,7 +143,8 @@ struct TodayView: View {
             ForEach(Array(habits.enumerated()), id: \.element.id) { index, habit in
                 NavigationLink(value: habit.id) {
                     HabitRow(habit: habit, result: result(for: habit),
-                             streak: StreakCalculator.current(for: habit.id, in: results))
+                             streak: StreakCalculator.current(for: habit.id, in: results),
+                             onToggle: { toggleManual(habit) })
                 }
                 .buttonStyle(.plain)
                 .contextMenu {
@@ -219,5 +222,17 @@ struct TodayView: View {
         withAnimation { context.delete(habit) }
         try? context.save()
         deleteTick += 1
+    }
+
+    private func toggleManual(_ habit: Habit) {
+        if result(for: habit)?.status == .achieved {
+            Store.upsertDailyResult(context, habitID: habit.id, day: today,
+                                     status: .pending, measured: nil, source: .manual)
+        } else {
+            Store.upsertDailyResult(context, habitID: habit.id, day: today,
+                                     status: .achieved, measured: 1, source: .manual)
+        }
+        try? context.save()
+        manualTick += 1
     }
 }

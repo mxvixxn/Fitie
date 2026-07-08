@@ -4,6 +4,7 @@ struct HabitRow: View {
     let habit: Habit
     let result: DailyResult?
     let streak: Int
+    var onToggle: () -> Void = {}
 
     private var metricColor: Color { habit.tintColor }
 
@@ -37,6 +38,9 @@ struct HabitRow: View {
     }
 
     private var subtitle: String {
+        if habit.rule.metric == .manual {
+            return result?.status == .achieved ? "직접 확인함" : "탭해서 체크"
+        }
         switch result?.status {
         case .achieved: return "\(measuredText) · 자동 확인됨"
         case .inProgress: return "\(measuredText) · 진행 중"
@@ -51,17 +55,28 @@ struct HabitRow: View {
                 Label("\(streak)", systemImage: "flame.fill")
                     .font(.caption2).foregroundStyle(Theme.streak).labelStyle(.titleAndIcon)
             }
-            switch result?.status {
-            case .achieved:
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.title3).foregroundStyle(Theme.achieved)
-            case .inProgress:
-                Text("\(percent)%").font(.caption).fontWeight(.semibold)
-                    .foregroundStyle(Theme.inProgress)
-            default:
-                Text("대기").font(.caption2).foregroundStyle(.secondary)
-                    .padding(.horizontal, 10).padding(.vertical, 4)
-                    .background(Color(.tertiarySystemFill), in: Capsule())
+            if habit.rule.metric == .manual {
+                Button(action: onToggle) {
+                    Image(systemName: result?.status == .achieved ? "checkmark.circle.fill" : "circle")
+                        .font(.title2)
+                        .foregroundStyle(result?.status == .achieved ? Theme.achieved : Color(.tertiaryLabel))
+                        .contentTransition(.symbolEffect(.replace))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(result?.status == .achieved ? "완료 해제" : "완료로 표시")
+            } else {
+                switch result?.status {
+                case .achieved:
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.title3).foregroundStyle(Theme.achieved)
+                case .inProgress:
+                    Text("\(percent)%").font(.caption).fontWeight(.semibold)
+                        .foregroundStyle(Theme.inProgress)
+                default:
+                    Text("대기").font(.caption2).foregroundStyle(.secondary)
+                        .padding(.horizontal, 10).padding(.vertical, 4)
+                        .background(Color(.tertiarySystemFill), in: Capsule())
+                }
             }
         }
     }
