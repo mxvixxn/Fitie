@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// The Fitie logo motif — a gradient completion ring with a check.
+/// The Fitie logo motif — a completion ring with a check, in the app accent hue.
 struct BrandMark: View {
     var size: CGFloat = 96
 
@@ -9,7 +9,7 @@ struct BrandMark: View {
             Circle()
                 .stroke(
                     AngularGradient(
-                        colors: [Theme.accent, Theme.mood, Theme.achieved, Theme.streak, Theme.accent],
+                        colors: [Theme.accent, Theme.mood, Theme.accent],
                         center: .center),
                     style: StrokeStyle(lineWidth: size * 0.1, lineCap: .round))
             Image(systemName: "checkmark")

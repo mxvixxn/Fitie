@@ -29,14 +29,11 @@ struct ConditionCheckInSheet: View {
                             .textFieldStyle(.plain)
                             .lineLimit(2...4)
                     }
-                    .glassCard()
+                    .card()
                 }
                 .padding(16)
             }
-            .scrollContentBackground(.hidden)
-            .background(Theme.background.ignoresSafeArea())
-            .fontDesign(.rounded)
-            .tint(Theme.accent)
+            .screenBackground()
             .navigationTitle("오늘 컨디션")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -71,9 +68,7 @@ struct ConditionCheckInSheet: View {
                 ForEach(1...5, id: \.self) { i in
                     Button { value.wrappedValue = i } label: {
                         Circle()
-                            .fill(i <= value.wrappedValue ? color : Color.clear)
-                            .overlay(Circle().strokeBorder(color.opacity(0.45),
-                                                           lineWidth: i <= value.wrappedValue ? 0 : 1.6))
+                            .fill(i <= value.wrappedValue ? color : Color(.tertiarySystemFill))
                             .overlay(Text("\(i)").font(.footnote).fontWeight(.medium)
                                 .foregroundStyle(i <= value.wrappedValue ? .white : .secondary))
                             .frame(maxWidth: .infinity)
@@ -87,7 +82,7 @@ struct ConditionCheckInSheet: View {
             }
             .font(.caption2).foregroundStyle(.secondary)
         }
-        .glassCard()
+        .card()
     }
 
     private func save() {

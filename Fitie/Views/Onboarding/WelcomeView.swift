@@ -9,7 +9,7 @@ struct WelcomeView: View {
 
     var body: some View {
         ZStack {
-            Theme.background.ignoresSafeArea()
+            Color(.systemBackground).ignoresSafeArea()
             VStack(spacing: 0) {
                 Spacer(minLength: 24)
 
@@ -61,7 +61,6 @@ struct WelcomeView: View {
                 .padding(.horizontal, 24)
                 .padding(.bottom, 24)
             }
-            .fontDesign(.rounded)
             .tint(Theme.accent)
         }
     }

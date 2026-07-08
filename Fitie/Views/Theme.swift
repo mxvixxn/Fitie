@@ -11,12 +11,6 @@ extension Color {
                   blue: Double(rgb & 0xFF) / 255,
                   opacity: 1)
     }
-
-    init(light: String, dark: String) {
-        self.init(UIColor { traits in
-            UIColor(Color(hex: traits.userInterfaceStyle == .dark ? dark : light))
-        })
-    }
 }
 
 enum AppearanceMode: String, CaseIterable, Identifiable {
@@ -38,54 +32,60 @@ enum AppearanceMode: String, CaseIterable, Identifiable {
     }
 }
 
+/// Fitie design language — Apple-native, modeled on Health / Fitness.
+/// Colors are the adaptive system palette so dark mode is handled by the OS.
 enum Theme {
-    // Accents (read well on both light and dark glass)
-    static let accent = Color(hex: "5B6BB5")       // indigo-lavender (CTA / selection)
-    static let mood = Color(hex: "8E8AD6")         // lavender (condition dots)
-    static let achieved = Color(hex: "55B98C")     // mint green
-    static let streak = Color(hex: "E08A6E")       // soft coral
-    static let inProgress = Color(hex: "CC8A45")   // soft amber
+    static let accent = Color.indigo       // CTA / selection (matches AccentColor asset)
+    static let mood = Color.purple         // condition (mood) — Health mental wellbeing
+    static let achieved = Color.green      // completed — Fitness exercise ring
+    static let streak = Color.orange       // flame — Fitness move
+    static let inProgress = Color.orange   // partial progress
 
-    /// Pastel choices offered when customizing a habit's color.
-    static let palette = ["4FB58E", "4E92C9", "D08A5E", "8E84C9",
-                          "4FB0A6", "E08A6E", "5B6BB5", "C06AA6"]
+    /// Habit color choices — stored as the light-mode hex of a system color.
+    static let palette = ["FF9500", "FFCC00", "34C759", "30B0C7",
+                          "007AFF", "5856D6", "AF52DE", "FF2D55"]
 
-    static func metricColor(_ metric: HealthMetric) -> Color {
-        switch metric {
-        case .steps: return Color(hex: "4FB58E")          // mint
-        case .water: return Color(hex: "4E92C9")          // sky
-        case .exerciseMinutes: return Color(hex: "D08A5E") // peach
-        case .mindfulMinutes: return Color(hex: "4FB0A6")  // teal
-        case .sleepStart: return Color(hex: "8E84C9")      // lavender
+    /// Resolves a stored palette hex to its adaptive system color so dark mode
+    /// gets the correct variant. Unknown (legacy) hexes render as-is.
+    static func paletteColor(_ hex: String) -> Color {
+        let raw = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        switch raw.uppercased() {
+        case "FF9500": return .orange
+        case "FFCC00": return .yellow
+        case "34C759": return .green
+        case "30B0C7": return .teal
+        case "007AFF": return .blue
+        case "5856D6": return .indigo
+        case "AF52DE": return .purple
+        case "FF2D55": return .pink
+        default: return Color(hex: hex)
         }
     }
 
-    // Soft pastel gradient backdrop (light + warm dark variants)
-    static var background: LinearGradient {
-        LinearGradient(
-            colors: [
-                Color(light: "E7EEF8", dark: "191C24"),
-                Color(light: "ECF1EC", dark: "161B19"),
-                Color(light: "F6EEE9", dark: "201A18"),
-                Color(light: "F0EAF6", dark: "1B1722")
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing)
+    /// Default metric colors, matching the Health app's category colors.
+    static func metricColor(_ metric: HealthMetric) -> Color {
+        switch metric {
+        case .steps: return .orange          // activity
+        case .water: return .cyan            // hydration
+        case .exerciseMinutes: return .green // exercise ring
+        case .mindfulMinutes: return .teal   // mindfulness
+        case .sleepStart: return .indigo     // sleep
+        }
     }
 }
 
 extension View {
-    /// Wraps content in a rounded Liquid Glass card.
-    func glassCard(cornerRadius: CGFloat = 26, tint: Color? = nil) -> some View {
-        let glass: Glass = tint.map { Glass.regular.tint($0) } ?? .regular
-        return self
+    /// Standard inset-grouped content card, as in Health / Fitness.
+    func card(cornerRadius: CGFloat = 20) -> some View {
+        self
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .glassEffect(glass, in: .rect(cornerRadius: cornerRadius))
+            .background(Color(.secondarySystemGroupedBackground),
+                        in: .rect(cornerRadius: cornerRadius, style: .continuous))
     }
 
-    /// Adds the app's pastel gradient as a full-bleed background.
+    /// System grouped background, full bleed.
     func screenBackground() -> some View {
-        background(Theme.background.ignoresSafeArea())
+        background(Color(.systemGroupedBackground).ignoresSafeArea())
     }
 }

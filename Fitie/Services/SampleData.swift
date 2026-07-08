@@ -16,13 +16,14 @@ enum SampleData {
         let today = cal.startOfDay(for: Date())
         func day(_ d: Int) -> Date { cal.date(byAdding: .day, value: -d, to: today)! }
 
-        let walk = Habit(name: "걷기", emoji: "🚶", colorHex: "#4FB58E",
+        // Empty colorHex → each habit takes its metric's system color.
+        let walk = Habit(name: "걷기", emoji: "🚶", colorHex: "",
                          rule: VerificationRule(metric: .steps, target: 6000))
-        let water = Habit(name: "물 마시기", emoji: "💧", colorHex: "#4E92C9",
+        let water = Habit(name: "물 마시기", emoji: "💧", colorHex: "",
                           rule: VerificationRule(metric: .water, target: 8))
-        let workout = Habit(name: "운동", emoji: "🏋️", colorHex: "#D08A5E",
+        let workout = Habit(name: "운동", emoji: "🏋️", colorHex: "",
                             rule: VerificationRule(metric: .exerciseMinutes, target: 20))
-        let sleep = Habit(name: "일찍 자기", emoji: "🌙", colorHex: "#8E84C9",
+        let sleep = Habit(name: "일찍 자기", emoji: "🌙", colorHex: "",
                           rule: VerificationRule(metric: .sleepStart, target: 23 * 60))
         [walk, water, workout, sleep].forEach { context.insert($0) }
 

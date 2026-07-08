@@ -115,7 +115,7 @@ struct TodayView: View {
             Spacer()
             DailyRing(achieved: achievedCount, total: habits.count)
         }
-        .glassCard()
+        .card()
     }
 
     // MARK: Habits
@@ -150,10 +150,10 @@ struct TodayView: View {
                         Label("삭제", systemImage: "trash")
                     }
                 }
-                if index < habits.count - 1 { Divider().opacity(0.4) }
+                if index < habits.count - 1 { Divider() }
             }
         }
-        .glassCard()
+        .card()
     }
 
     private var emptyHabits: some View {
@@ -172,7 +172,7 @@ struct TodayView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 18)
-        .glassCard()
+        .card()
     }
 
     // MARK: Insight
@@ -185,9 +185,10 @@ struct TodayView: View {
                     Text(sentence).font(.callout).foregroundStyle(.primary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Image(systemName: "chevron.right")
-                        .font(.footnote).foregroundStyle(Theme.accent)
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.tertiary)
                 }
-                .glassCard(cornerRadius: 22, tint: Theme.mood.opacity(0.25))
+                .card()
             }
             .buttonStyle(.plain)
         }

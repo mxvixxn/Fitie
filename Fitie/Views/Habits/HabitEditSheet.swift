@@ -12,7 +12,7 @@ struct HabitEditSheet: View {
     @State private var target: Double = 5000
     @State private var reminderOn = false
     @State private var reminderTime = Date()
-    @State private var colorHex = Theme.palette[6]
+    @State private var colorHex = Theme.palette[5]
     @State private var saveTick = 0
 
     private var isEditing: Bool { habit != nil }
@@ -54,7 +54,7 @@ struct HabitEditSheet: View {
                     HStack(spacing: 14) {
                         ForEach(Theme.palette, id: \.self) { hex in
                             Circle()
-                                .fill(Color(hex: hex))
+                                .fill(Theme.paletteColor(hex))
                                 .frame(width: 30, height: 30)
                                 .overlay {
                                     if hex == colorHex {
@@ -91,10 +91,6 @@ struct HabitEditSheet: View {
                     }
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Theme.background.ignoresSafeArea())
-            .fontDesign(.rounded)
-            .tint(Theme.accent)
             .navigationTitle(isEditing ? "습관 편집" : "새 습관")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -130,7 +126,7 @@ struct HabitEditSheet: View {
         let rule = habit.rule
         metric = rule.metric
         target = rule.metric == .sleepStart ? rule.target / 60 : rule.target
-        colorHex = habit.colorHex.isEmpty ? Theme.palette[6] : habit.colorHex
+        colorHex = habit.colorHex.isEmpty ? Theme.palette[5] : habit.colorHex
         if let h = habit.reminderHour, let m = habit.reminderMinute {
             reminderOn = true
             reminderTime = Calendar.current.date(bySettingHour: h, minute: m, second: 0, of: Date()) ?? Date()

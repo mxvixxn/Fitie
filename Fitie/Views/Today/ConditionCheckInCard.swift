@@ -16,7 +16,7 @@ struct ConditionCheckInCard: View {
                 scaleRow(label: "기분", value: entry?.mood ?? 0)
                 scaleRow(label: "에너지", value: entry?.energy ?? 0)
             }
-            .glassCard()
+            .card()
         }
         .buttonStyle(.plain)
     }
@@ -28,10 +28,8 @@ struct ConditionCheckInCard: View {
             HStack(spacing: 8) {
                 ForEach(1...5, id: \.self) { i in
                     Circle()
-                        .fill(i <= value ? Theme.mood : Color.clear)
+                        .fill(i <= value ? Theme.mood : Color(.tertiarySystemFill))
                         .frame(width: 16, height: 16)
-                        .overlay(Circle().strokeBorder(Color.secondary.opacity(0.4),
-                                                       lineWidth: i <= value ? 0 : 1.5))
                 }
             }
         }

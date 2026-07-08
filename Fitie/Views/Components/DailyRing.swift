@@ -14,14 +14,11 @@ struct DailyRing: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Theme.accent.opacity(0.14), lineWidth: lineWidth)
+                .stroke(Theme.accent.opacity(0.12), lineWidth: lineWidth)
             Circle()
                 .trim(from: 0, to: max(0.0001, min(1, fraction)))
-                .stroke(
-                    AngularGradient(
-                        colors: [Theme.accent, Theme.mood, Theme.achieved, Theme.accent],
-                        center: .center),
-                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                .stroke(Theme.accent.gradient,
+                        style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .animation(.spring(response: 0.6, dampingFraction: 0.8), value: fraction)
             VStack(spacing: -2) {

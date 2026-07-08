@@ -44,7 +44,7 @@ struct InsightsView: View {
             Text(label).font(.caption2).foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .glassCard(cornerRadius: 20)
+        .card()
     }
 
     // MARK: Insights
@@ -64,7 +64,7 @@ struct InsightsView: View {
                     .font(.callout).foregroundStyle(.secondary)
             }
         }
-        .glassCard()
+        .card()
     }
 
     // MARK: Trend chart
@@ -88,7 +88,7 @@ struct InsightsView: View {
             } else {
                 Chart(trendData) { c in
                     AreaMark(x: .value("날짜", c.day), y: .value("기분", c.mood))
-                        .foregroundStyle(.linearGradient(colors: [Theme.mood.opacity(0.28), Theme.mood.opacity(0.02)],
+                        .foregroundStyle(.linearGradient(colors: [Theme.mood.opacity(0.25), Theme.mood.opacity(0.02)],
                                                          startPoint: .top, endPoint: .bottom))
                         .interpolationMethod(.catmullRom)
                     LineMark(x: .value("날짜", c.day), y: .value("기분", c.mood))
@@ -104,7 +104,7 @@ struct InsightsView: View {
                 .frame(height: 200)
             }
         }
-        .glassCard()
+        .card()
     }
 
     // MARK: Derived data

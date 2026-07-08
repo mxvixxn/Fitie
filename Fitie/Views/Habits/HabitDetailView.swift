@@ -42,16 +42,16 @@ struct HabitDetailView: View {
             Image(systemName: habit.rule.metric.symbolName)
                 .font(.system(size: 24))
                 .frame(width: 54, height: 54)
-                .background(habit.tintColor.opacity(0.18))
+                .background(habit.tintColor.opacity(0.15))
                 .foregroundStyle(habit.tintColor)
-                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             VStack(alignment: .leading, spacing: 3) {
                 Text(habit.name).font(.title3).fontWeight(.semibold)
                 Text(ruleDescription).font(.subheadline).foregroundStyle(.secondary)
             }
             Spacer()
         }
-        .glassCard()
+        .card()
     }
 
     private var ruleDescription: String {
@@ -82,7 +82,7 @@ struct HabitDetailView: View {
             Text(label).font(.caption2).foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .glassCard(cornerRadius: 20)
+        .card()
     }
 
     private var completion30: String {
@@ -108,8 +108,8 @@ struct HabitDetailView: View {
         switch status {
         case .achieved: return habit.tintColor
         case .inProgress: return habit.tintColor.opacity(0.45)
-        case .missed: return .secondary.opacity(0.18)
-        default: return .secondary.opacity(0.08)
+        case .missed: return Color(.systemFill)
+        default: return Color(.quaternarySystemFill)
         }
     }
 
@@ -125,12 +125,12 @@ struct HabitDetailView: View {
             }
             HStack(spacing: 12) {
                 legend(habit.tintColor, "달성")
-                legend(.secondary.opacity(0.18), "미달")
-                legend(.secondary.opacity(0.08), "기록 없음")
+                legend(Color(.systemFill), "미달")
+                legend(Color(.quaternarySystemFill), "기록 없음")
             }
             .font(.caption2).foregroundStyle(.secondary)
         }
-        .glassCard()
+        .card()
     }
 
     private func legend(_ color: Color, _ label: String) -> some View {
@@ -172,6 +172,6 @@ struct HabitDetailView: View {
             }
             .frame(height: 170)
         }
-        .glassCard()
+        .card()
     }
 }

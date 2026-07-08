@@ -72,9 +72,6 @@ struct SettingsView: View {
                     }
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Theme.background.ignoresSafeArea())
-            .tint(Theme.accent)
             .navigationTitle("설정")
             .confirmationDialog("모든 습관·기록·인사이트가 삭제됩니다.",
                                 isPresented: $showResetConfirm, titleVisibility: .visible) {

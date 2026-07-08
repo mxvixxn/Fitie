@@ -9,8 +9,7 @@ struct ConfettiView: View {
         let size = CGFloat.random(in: 6...11)
         let spin = Double.random(in: 180...900)
         let delay = Double.random(in: 0...0.25)
-        let color = [Theme.accent, Theme.mood, Theme.achieved, Theme.streak,
-                     Color(hex: "4E92C9"), Color(hex: "C06AA6")].randomElement()!
+        let color: Color = [.indigo, .purple, .green, .orange, .blue, .pink].randomElement()!
     }
 
     private let pieces = (0..<46).map { _ in Piece() }

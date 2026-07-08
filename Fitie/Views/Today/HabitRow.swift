@@ -19,9 +19,9 @@ struct HabitRow: View {
             Image(systemName: habit.rule.metric.symbolName)
                 .font(.system(size: 19))
                 .frame(width: 40, height: 40)
-                .background(metricColor.opacity(0.18))
+                .background(metricColor.opacity(0.15))
                 .foregroundStyle(metricColor)
-                .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(habit.name).font(.body).fontWeight(.medium)
@@ -61,7 +61,7 @@ struct HabitRow: View {
             default:
                 Text("대기").font(.caption2).foregroundStyle(.secondary)
                     .padding(.horizontal, 10).padding(.vertical, 4)
-                    .background(.thinMaterial, in: Capsule())
+                    .background(Color(.tertiarySystemFill), in: Capsule())
             }
         }
     }
