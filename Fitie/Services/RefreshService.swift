@@ -48,15 +48,16 @@ final class RefreshService {
     }
 
     /// Finalizes every day after `lastFinalizedDay` up to and including yesterday.
-    /// A nil anchor finalizes the trailing 7 days. Returns the new anchor
-    /// (yesterday), or nil when there was nothing to finalize.
+    /// A nil anchor finalizes the trailing 7 days. A stale anchor older than 7 days
+    /// is clamped the same way, so the catch-up window is never unbounded. Returns
+    /// the new anchor (yesterday), or nil when there was nothing to finalize.
     func finalizePastDays(context: ModelContext, lastFinalizedDay: Date?,
                           now: Date = Date()) async throws -> Date? {
         let cal = Calendar.current
         let today = cal.startOfDay(for: now)
         let yesterday = cal.date(byAdding: .day, value: -1, to: today)!
-        let anchor = lastFinalizedDay.map { cal.startOfDay(for: $0) }
-            ?? cal.date(byAdding: .day, value: -7, to: today)!
+        let maxLookback = cal.date(byAdding: .day, value: -7, to: today)!
+        let anchor = max(lastFinalizedDay.map { cal.startOfDay(for: $0) } ?? maxLookback, maxLookback)
 
         var day = cal.date(byAdding: .day, value: 1, to: anchor)!
         guard day <= yesterday else { return nil }

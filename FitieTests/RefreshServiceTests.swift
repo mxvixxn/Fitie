@@ -123,4 +123,32 @@ struct RefreshServiceTests {
                                                            lastFinalizedDay: yesterday)
         #expect(finalized == nil)
     }
+
+    @Test func finalizePastDaysClampsStaleAnchorToSevenDays() async throws {
+        let container = Store.inMemoryContainer()
+        let context = container.mainContext
+        let habit = Habit(name: "걷기", emoji: "", colorHex: "",
+                          rule: VerificationRule(metric: .steps, target: 5000))
+        context.insert(habit)
+
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        let yesterday = cal.date(byAdding: .day, value: -1, to: today)!
+        let staleAnchor = cal.date(byAdding: .day, value: -30, to: today)!
+        // Same lower bound the nil-anchor branch already clamps to.
+        let earliestExpectedDay = cal.date(byAdding: .day, value: -7, to: today)!
+            .addingTimeInterval(24 * 60 * 60)
+
+        let service = RefreshService(health: MockHealthDataSource(scripted: [.steps: 1000]),
+                                     phraser: TemplatePhraser())
+        let finalized = try await service.finalizePastDays(context: context,
+                                                           lastFinalizedDay: staleAnchor)
+
+        #expect(finalized == yesterday)
+        let results = try context.fetch(FetchDescriptor<DailyResult>())
+        // A 30-day-old anchor must not finalize all 30 days — only the trailing
+        // 7-day window, matching the nil-anchor branch's own safeguard.
+        #expect(results.count == 6)
+        #expect(results.map(\.day).min() == earliestExpectedDay)
+    }
 }
