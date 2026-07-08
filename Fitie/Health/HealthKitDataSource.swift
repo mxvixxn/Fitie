@@ -29,6 +29,8 @@ final class HealthKitDataSource: HealthDataSource, @unchecked Sendable {
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
 
         switch metric {
+        case .manual:
+            return nil
         case .steps:
             return try await sum(.stepCount, unit: .count(), predicate: predicate)
         case .water:

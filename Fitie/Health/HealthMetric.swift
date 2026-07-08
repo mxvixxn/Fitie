@@ -6,6 +6,7 @@ enum HealthMetric: String, Codable, CaseIterable, Identifiable, Sendable {
     case water
     case mindfulMinutes
     case sleepStart
+    case manual
 
     var id: String { rawValue }
 
@@ -16,6 +17,7 @@ enum HealthMetric: String, Codable, CaseIterable, Identifiable, Sendable {
         case .water: return "물 마시기"
         case .mindfulMinutes: return "마음챙김"
         case .sleepStart: return "일찍 자기"
+        case .manual: return "직접 체크"
         }
     }
 
@@ -25,6 +27,7 @@ enum HealthMetric: String, Codable, CaseIterable, Identifiable, Sendable {
         case .exerciseMinutes, .mindfulMinutes: return "분"
         case .water: return "잔"
         case .sleepStart: return "시"
+        case .manual: return "회"
         }
     }
 
@@ -39,6 +42,7 @@ enum HealthMetric: String, Codable, CaseIterable, Identifiable, Sendable {
         case .water: return "drop.fill"
         case .mindfulMinutes: return "brain.head.profile"
         case .sleepStart: return "moon.fill"
+        case .manual: return "checkmark.circle"
         }
     }
 
@@ -49,6 +53,7 @@ enum HealthMetric: String, Codable, CaseIterable, Identifiable, Sendable {
         case .water: return "Apple 건강에 기록한 물 섭취량으로 확인돼요."
         case .mindfulMinutes: return "Apple 건강의 마음챙김 기록으로 확인돼요."
         case .sleepStart: return "수면 데이터의 취침 시각으로 확인돼요."
+        case .manual: return "건강 데이터 없이 탭해서 직접 체크해요."
         }
     }
 }

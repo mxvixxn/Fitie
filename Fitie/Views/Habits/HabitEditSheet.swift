@@ -117,6 +117,7 @@ struct HabitEditSheet: View {
         case .water: return 8
         case .mindfulMinutes: return 10
         case .sleepStart: return 23
+        case .manual: return 1
         }
     }
 

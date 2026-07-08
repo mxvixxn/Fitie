@@ -70,6 +70,7 @@ enum Theme {
         case .exerciseMinutes: return .green // exercise ring
         case .mindfulMinutes: return .teal   // mindfulness
         case .sleepStart: return .indigo     // sleep
+        case .manual: return .blue           // manual check-in
         }
     }
 }
