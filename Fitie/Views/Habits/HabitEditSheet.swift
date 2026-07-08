@@ -183,12 +183,15 @@ struct HabitEditSheet: View {
         if habit == nil { context.insert(target) }
         try? context.save()
 
-        NotificationService.cancelReminder(habitID: target.id)
+        let habitID = target.id, habitName = target.name
         if reminderOn, let h = target.reminderHour, let m = target.reminderMinute {
             Task {
                 await NotificationService.requestAuthorization()
-                NotificationService.scheduleReminder(habitID: target.id, name: target.name, hour: h, minute: m)
+                await NotificationService.rearmReminder(habitID: habitID, name: habitName,
+                                                        hour: h, minute: m, skipToday: false)
             }
+        } else {
+            Task { await NotificationService.cancelReminder(habitID: habitID) }
         }
         saveTick += 1
         dismiss()
@@ -196,7 +199,7 @@ struct HabitEditSheet: View {
 
     private func deleteHabit() {
         guard let habit else { return }
-        NotificationService.cancelReminder(habitID: habit.id)
+        Task { await NotificationService.cancelReminder(habitID: habit.id) }
         context.delete(habit)
         try? context.save()
         dismiss()

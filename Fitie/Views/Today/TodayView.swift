@@ -230,7 +230,7 @@ struct TodayView: View {
     }
 
     private func delete(_ habit: Habit) {
-        NotificationService.cancelReminder(habitID: habit.id)
+        Task { await NotificationService.cancelReminder(habitID: habit.id) }
         withAnimation { context.delete(habit) }
         try? context.save()
         deleteTick += 1
