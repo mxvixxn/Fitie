@@ -25,4 +25,11 @@ enum Store {
                                        measured: measured, source: source))
         }
     }
+
+    static func dailyResult(_ context: ModelContext, habitID: UUID, day: Date) -> DailyResult? {
+        let start = Calendar.current.startOfDay(for: day)
+        let descriptor = FetchDescriptor<DailyResult>(
+            predicate: #Predicate { $0.habitID == habitID && $0.day == start })
+        return try? context.fetch(descriptor).first
+    }
 }

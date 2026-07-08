@@ -11,21 +11,40 @@ final class RefreshService {
         self.phraser = phraser
     }
 
-    /// Pulls today's health values, evaluates each active habit, persists DailyResult.
-    func refreshToday(context: ModelContext, now: Date = Date()) async throws {
-        let today = Calendar.current.startOfDay(for: now)
-        let dayIsOver = false   // today is in progress
+    /// Evaluates every active habit for `day` and persists DailyResults.
+    /// `dayIsOver: true` finalizes the day (pending/inProgress collapse to missed).
+    func refresh(day: Date, dayIsOver: Bool, context: ModelContext) async throws {
+        let day = Calendar.current.startOfDay(for: day)
         let habits = try context.fetch(FetchDescriptor<Habit>()).filter { !$0.isArchived }
 
-        for habit in habits where habit.isActive(on: today) {
+        for habit in habits where habit.isActive(on: day) {
             let rule = habit.rule
-            let measured = (try? await health.value(for: rule.metric, on: today)) ?? nil
+            let existing = Store.dailyResult(context, habitID: habit.id, day: day)
+
+            if rule.metric == .manual {
+                // Manual habits are user-driven; refresh only closes out unchecked past days.
+                if dayIsOver && existing?.status != .achieved {
+                    Store.upsertDailyResult(context, habitID: habit.id, day: day,
+                                            status: .missed, measured: existing?.measured,
+                                            source: existing?.source ?? .manual)
+                }
+                continue
+            }
+            // Never overwrite a user's manual override with auto data.
+            if existing?.source == .manual { continue }
+
+            let measured = (try? await health.value(for: rule.metric, on: day)) ?? nil
             let status = HabitEvaluator.status(measured: measured, target: rule.target,
                                                comparison: rule.comparison, dayIsOver: dayIsOver)
-            Store.upsertDailyResult(context, habitID: habit.id, day: today,
+            Store.upsertDailyResult(context, habitID: habit.id, day: day,
                                     status: status, measured: measured, source: .auto)
         }
         try? context.save()
+    }
+
+    /// Pulls today's health values while the day is still in progress.
+    func refreshToday(context: ModelContext, now: Date = Date()) async throws {
+        try await refresh(day: now, dayIsOver: false, context: context)
     }
 
     /// Recomputes insights over a rolling window and stores a snapshot.

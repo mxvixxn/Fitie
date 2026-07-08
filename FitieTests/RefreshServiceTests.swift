@@ -37,4 +37,55 @@ struct RefreshServiceTests {
         let results = try context.fetch(FetchDescriptor<DailyResult>())
         #expect(results.first?.status == .pending)
     }
+
+    @Test func manualResultIsNotOverwrittenByAutoRefresh() async throws {
+        let container = Store.inMemoryContainer()
+        let context = container.mainContext
+        let habit = Habit(name: "걷기", emoji: "", colorHex: "",
+                          rule: VerificationRule(metric: .steps, target: 5000))
+        context.insert(habit)
+        // User manually marked today as achieved (e.g. HealthKit denied).
+        Store.upsertDailyResult(context, habitID: habit.id, day: Date(),
+                                status: .achieved, measured: 1, source: .manual)
+
+        let health = MockHealthDataSource(scripted: [.steps: 100])
+        let service = RefreshService(health: health, phraser: TemplatePhraser())
+        try await service.refreshToday(context: context)
+
+        let result = try context.fetch(FetchDescriptor<DailyResult>()).first
+        #expect(result?.status == .achieved)
+        #expect(result?.source == .manual)
+    }
+
+    @Test func uncheckedManualHabitBecomesMissedWhenDayIsOver() async throws {
+        let container = Store.inMemoryContainer()
+        let context = container.mainContext
+        let habit = Habit(name: "독서", emoji: "", colorHex: "",
+                          rule: VerificationRule(metric: .manual, target: 1))
+        context.insert(habit)
+
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1,
+                                              to: Calendar.current.startOfDay(for: Date()))!
+        let service = RefreshService(health: MockHealthDataSource(scripted: [:]),
+                                     phraser: TemplatePhraser())
+        try await service.refresh(day: yesterday, dayIsOver: true, context: context)
+
+        let result = try context.fetch(FetchDescriptor<DailyResult>()).first
+        #expect(result?.day == yesterday)
+        #expect(result?.status == .missed)
+    }
+
+    @Test func manualHabitStaysUntouchedWhileDayInProgress() async throws {
+        let container = Store.inMemoryContainer()
+        let context = container.mainContext
+        let habit = Habit(name: "독서", emoji: "", colorHex: "",
+                          rule: VerificationRule(metric: .manual, target: 1))
+        context.insert(habit)
+
+        let service = RefreshService(health: MockHealthDataSource(scripted: [:]),
+                                     phraser: TemplatePhraser())
+        try await service.refreshToday(context: context)
+
+        #expect(try context.fetch(FetchDescriptor<DailyResult>()).isEmpty)
+    }
 }
