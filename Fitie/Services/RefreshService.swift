@@ -47,6 +47,26 @@ final class RefreshService {
         try await refresh(day: now, dayIsOver: false, context: context)
     }
 
+    /// Finalizes every day after `lastFinalizedDay` up to and including yesterday.
+    /// A nil anchor finalizes the trailing 7 days. Returns the new anchor
+    /// (yesterday), or nil when there was nothing to finalize.
+    func finalizePastDays(context: ModelContext, lastFinalizedDay: Date?,
+                          now: Date = Date()) async throws -> Date? {
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: now)
+        let yesterday = cal.date(byAdding: .day, value: -1, to: today)!
+        let anchor = lastFinalizedDay.map { cal.startOfDay(for: $0) }
+            ?? cal.date(byAdding: .day, value: -7, to: today)!
+
+        var day = cal.date(byAdding: .day, value: 1, to: anchor)!
+        guard day <= yesterday else { return nil }
+        while day <= yesterday {
+            try await refresh(day: day, dayIsOver: true, context: context)
+            day = cal.date(byAdding: .day, value: 1, to: day)!
+        }
+        return yesterday
+    }
+
     /// Recomputes insights over a rolling window and stores a snapshot.
     func recomputeInsights(context: ModelContext, windowDays: Int = 21, now: Date = Date()) async throws {
         let cal = Calendar.current

@@ -88,4 +88,39 @@ struct RefreshServiceTests {
 
         #expect(try context.fetch(FetchDescriptor<DailyResult>()).isEmpty)
     }
+
+    @Test func finalizePastDaysMarksMissedYesterday() async throws {
+        let container = Store.inMemoryContainer()
+        let context = container.mainContext
+        let habit = Habit(name: "걷기", emoji: "", colorHex: "",
+                          rule: VerificationRule(metric: .steps, target: 5000))
+        context.insert(habit)
+
+        let cal = Calendar.current
+        let yesterday = cal.date(byAdding: .day, value: -1, to: cal.startOfDay(for: Date()))!
+        let twoDaysAgo = cal.date(byAdding: .day, value: -2, to: cal.startOfDay(for: Date()))!
+
+        let service = RefreshService(health: MockHealthDataSource(scripted: [.steps: 1000]),
+                                     phraser: TemplatePhraser())
+        let finalized = try await service.finalizePastDays(context: context,
+                                                           lastFinalizedDay: twoDaysAgo)
+
+        #expect(finalized == yesterday)
+        let result = try context.fetch(FetchDescriptor<DailyResult>()).first
+        #expect(result?.day == yesterday)
+        #expect(result?.status == .missed)   // 1000 < 5000 and the day is over
+    }
+
+    @Test func finalizePastDaysReturnsNilWhenUpToDate() async throws {
+        let container = Store.inMemoryContainer()
+        let context = container.mainContext
+        let cal = Calendar.current
+        let yesterday = cal.date(byAdding: .day, value: -1, to: cal.startOfDay(for: Date()))!
+
+        let service = RefreshService(health: MockHealthDataSource(scripted: [:]),
+                                     phraser: TemplatePhraser())
+        let finalized = try await service.finalizePastDays(context: context,
+                                                           lastFinalizedDay: yesterday)
+        #expect(finalized == nil)
+    }
 }
