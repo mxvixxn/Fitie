@@ -39,6 +39,7 @@
 		A2457EDE2BFA6C4F180F4F48 /* InsightSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */; };
 		A84A1E2C1F082BF883E3EE39 /* ConditionCheckInCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3E20117229B4E8D4D7CE8 /* ConditionCheckInCard.swift */; };
 		AA6FD87E0A94994DD38097BF /* HabitEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */; };
+		09A1E9BAF070029D4D0E6CC9 /* HabitScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A3528397E51436969107E6 /* HabitScheduleTests.swift */; };
 		B6C15FC433E0B1B425839259 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B87603E171AF38721E319 /* InsightsView.swift */; };
 		B9574F360D593E99C2607EC7 /* HabitTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DA6C29FF7C5388035669E9 /* HabitTint.swift */; };
 		BC9577B17B8339A839DB3F57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9076D4D998005107F0DE3 /* SettingsView.swift */; };
@@ -119,6 +120,7 @@
 		7E2C2EFC95B982267993E561 /* TemplatePhraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePhraser.swift; sourceTree = "<group>"; };
 		850066F3CF1123F2886F228C /* InsightPhraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightPhraser.swift; sourceTree = "<group>"; };
 		8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluatorTests.swift; sourceTree = "<group>"; };
+		56A3528397E51436969107E6 /* HabitScheduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitScheduleTests.swift; sourceTree = "<group>"; };
 		916B36A74D37536877A6CEFC /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		99786F78D7FD4BAC224B7E2E /* FitieWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FitieWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B973DF35446469CCA59AD9C /* FitieWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitieWidgetsBundle.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */,
+				56A3528397E51436969107E6 /* HabitScheduleTests.swift */,
 				352E5DD0B1E0410EDC8FC640 /* InsightEngineTests.swift */,
 				52C13834AF87F742346A742E /* RefreshServiceTests.swift */,
 				AC77D96C67C698A0D3D3D790 /* TemplatePhraserTests.swift */,
@@ -464,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA6FD87E0A94994DD38097BF /* HabitEvaluatorTests.swift in Sources */,
+				09A1E9BAF070029D4D0E6CC9 /* HabitScheduleTests.swift in Sources */,
 				FD593A828E45AD98DF4AC3CA /* InsightEngineTests.swift in Sources */,
 				9B111A588B1B561A4569842B /* RefreshServiceTests.swift in Sources */,
 				094D272119E17A6D20F3DC1F /* TemplatePhraserTests.swift in Sources */,

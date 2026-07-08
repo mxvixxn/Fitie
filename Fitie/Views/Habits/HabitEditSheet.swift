@@ -13,7 +13,10 @@ struct HabitEditSheet: View {
     @State private var reminderOn = false
     @State private var reminderTime = Date()
     @State private var colorHex = Theme.palette[5]
+    @State private var weekdays: Set<Int> = []
     @State private var saveTick = 0
+
+    private static let weekdaySymbols = ["일", "월", "화", "수", "목", "금", "토"]
 
     private var isEditing: Bool { habit != nil }
 
@@ -48,6 +51,30 @@ struct HabitEditSheet: View {
                 } footer: {
                     Label(metric.verificationHint, systemImage: "checkmark.seal")
                         .font(.caption)
+                }
+
+                Section {
+                    HStack(spacing: 8) {
+                        ForEach(1...7, id: \.self) { day in
+                            let isOn = weekdays.contains(day)
+                            Button {
+                                if isOn { weekdays.remove(day) } else { weekdays.insert(day) }
+                            } label: {
+                                Text(Self.weekdaySymbols[day - 1])
+                                    .font(.subheadline.weight(.medium))
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 34)
+                                    .background(isOn ? Theme.accent : Color(.tertiarySystemFill), in: .circle)
+                                    .foregroundStyle(isOn ? .white : .primary)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                } header: {
+                    Text("반복")
+                } footer: {
+                    Text(weekdays.isEmpty || weekdays.count == 7 ? "매일 반복해요."
+                         : "선택한 요일에만 반복해요.")
                 }
 
                 Section("색상") {
@@ -128,6 +155,7 @@ struct HabitEditSheet: View {
         metric = rule.metric
         target = rule.metric == .sleepStart ? rule.target / 60 : rule.target
         colorHex = habit.colorHex.isEmpty ? Theme.palette[5] : habit.colorHex
+        weekdays = Set(habit.activeWeekdays)
         if let h = habit.reminderHour, let m = habit.reminderMinute {
             reminderOn = true
             reminderTime = Calendar.current.date(bySettingHour: h, minute: m, second: 0, of: Date()) ?? Date()
@@ -141,6 +169,7 @@ struct HabitEditSheet: View {
         target.name = name.trimmingCharacters(in: .whitespaces)
         target.colorHex = colorHex
         target.rule = rule
+        target.activeWeekdays = (weekdays.isEmpty || weekdays.count == 7) ? [] : weekdays.sorted()
 
         if reminderOn {
             let comps = Calendar.current.dateComponents([.hour, .minute], from: reminderTime)

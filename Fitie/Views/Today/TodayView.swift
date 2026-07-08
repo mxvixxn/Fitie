@@ -22,6 +22,7 @@ struct TodayView: View {
     let onShowInsights: () -> Void
 
     private var today: Date { Calendar.current.startOfDay(for: Date()) }
+    private var todayHabits: [Habit] { habits.filter { $0.isActive(on: today) } }
     private var todayCondition: ConditionEntry? {
         conditions.first { Calendar.current.isDate($0.day, inSameDayAs: today) }
     }
@@ -29,7 +30,7 @@ struct TodayView: View {
         results.first { $0.habitID == habit.id && Calendar.current.isDate($0.day, inSameDayAs: today) }
     }
     private var achievedCount: Int {
-        habits.filter { result(for: $0)?.status == .achieved }.count
+        todayHabits.filter { result(for: $0)?.status == .achieved }.count
     }
 
     var body: some View {
@@ -65,7 +66,7 @@ struct TodayView: View {
                 if showConfetti { ConfettiView().padding(.top, 90) }
             }
             .onChange(of: achievedCount) { _, newValue in
-                if !habits.isEmpty && newValue == habits.count {
+                if !todayHabits.isEmpty && newValue == todayHabits.count {
                     if !celebrated {
                         celebrated = true
                         showConfetti = true
@@ -103,19 +104,19 @@ struct TodayView: View {
                     .locale(Locale(identifier: "ko_KR"))))
                     .font(.subheadline).foregroundStyle(.secondary)
                 Spacer(minLength: 4)
-                if habits.isEmpty {
+                if todayHabits.isEmpty {
                     Text("습관을 추가해 시작하세요").font(.footnote).foregroundStyle(.secondary)
-                } else if achievedCount == habits.count {
+                } else if achievedCount == todayHabits.count {
                     Label("오늘 목표 달성!", systemImage: "checkmark.seal.fill")
                         .font(.subheadline).fontWeight(.medium).foregroundStyle(Theme.achieved)
                         .symbolEffect(.bounce, value: achievedCount)
                 } else {
-                    Text("\(habits.count - achievedCount)개 남았어요")
+                    Text("\(todayHabits.count - achievedCount)개 남았어요")
                         .font(.subheadline).foregroundStyle(.secondary)
                 }
             }
             Spacer()
-            DailyRing(achieved: achievedCount, total: habits.count)
+            DailyRing(achieved: achievedCount, total: todayHabits.count)
         }
         .card()
     }
@@ -127,20 +128,20 @@ struct TodayView: View {
             HStack {
                 Text("오늘의 습관").font(.headline)
                 Spacer()
-                if !habits.isEmpty {
-                    Text("\(achievedCount) / \(habits.count) 달성")
+                if !todayHabits.isEmpty {
+                    Text("\(achievedCount) / \(todayHabits.count) 달성")
                         .font(.subheadline).foregroundStyle(.secondary)
                 }
             }
             .padding(.horizontal, 4)
 
-            if habits.isEmpty { emptyHabits } else { habitsCard }
+            if todayHabits.isEmpty { emptyHabits } else { habitsCard }
         }
     }
 
     private var habitsCard: some View {
         VStack(spacing: 0) {
-            ForEach(Array(habits.enumerated()), id: \.element.id) { index, habit in
+            ForEach(Array(todayHabits.enumerated()), id: \.element.id) { index, habit in
                 HStack(spacing: 8) {
                     NavigationLink(value: habit.id) {
                         HabitRow(habit: habit, result: result(for: habit),
@@ -164,7 +165,7 @@ struct TodayView: View {
                         .accessibilityLabel(result(for: habit)?.status == .achieved ? "완료 해제" : "완료로 표시")
                     }
                 }
-                if index < habits.count - 1 { Divider() }
+                if index < todayHabits.count - 1 { Divider() }
             }
         }
         .card()
