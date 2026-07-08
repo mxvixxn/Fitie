@@ -13,10 +13,7 @@ enum Store {
     static func upsertDailyResult(_ context: ModelContext, habitID: UUID, day: Date,
                                   status: HabitStatus, measured: Double?, source: ResultSource) {
         let start = Calendar.current.startOfDay(for: day)
-        let descriptor = FetchDescriptor<DailyResult>(
-            predicate: #Predicate { $0.habitID == habitID && $0.day == start }
-        )
-        if let existing = try? context.fetch(descriptor).first {
+        if let existing = dailyResult(context, habitID: habitID, day: day) {
             existing.status = status
             existing.measured = measured
             existing.source = source
