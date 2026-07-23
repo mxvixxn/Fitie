@@ -45,6 +45,7 @@
 		C5A9BFCB166216DE5C3BB276 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ED02C2882CC04FFBCBA4F9 /* TodayView.swift */; };
 		CE8BEE7AEEDB3AC29281A6D0 /* FitieActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108682340094740BC14C6973 /* FitieActivityAttributes.swift */; };
 		D1201A10E22F49717A103222 /* DailyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E8FA9544638F8A81E7BB /* DailyRing.swift */; };
+		D5B7C6A0FFE4FE6F5118CE9C /* Fitie.icon in Resources */ = {isa = PBXBuildFile; fileRef = 5323D85500156CC2D67323E4 /* Fitie.icon */; };
 		D64FA204EE4CA18F8D5D189F /* ConditionCheckInSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF905499D5E01E29C24DA9 /* ConditionCheckInSheet.swift */; };
 		D6DFA314A66B8DB84738DB66 /* ConditionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE0972096B7A30B12892F9F /* ConditionEntry.swift */; };
 		DA73D0C78507A8687A4CEBF8 /* DailyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB34E9E656A515BF2DB3F3 /* DailyResult.swift */; };
@@ -111,6 +112,7 @@
 		47DA6C29FF7C5388035669E9 /* HabitTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTint.swift; sourceTree = "<group>"; };
 		4D7B2EF58F6CD0C1B8247218 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		52C13834AF87F742346A742E /* RefreshServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshServiceTests.swift; sourceTree = "<group>"; };
+		5323D85500156CC2D67323E4 /* Fitie.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = Fitie.icon; sourceTree = "<group>"; };
 		5C892D64C64CB31E41421C20 /* BrandMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandMark.swift; sourceTree = "<group>"; };
 		5FA3E20117229B4E8D4D7CE8 /* ConditionCheckInCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionCheckInCard.swift; sourceTree = "<group>"; };
 		66616C5F68284AA2C7EC9E15 /* MockHealthDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHealthDataSource.swift; sourceTree = "<group>"; };
@@ -120,7 +122,7 @@
 		850066F3CF1123F2886F228C /* InsightPhraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightPhraser.swift; sourceTree = "<group>"; };
 		8B88EF5D7796EDD4970148CD /* HabitEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEvaluatorTests.swift; sourceTree = "<group>"; };
 		916B36A74D37536877A6CEFC /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		99786F78D7FD4BAC224B7E2E /* FitieWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FitieWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		99786F78D7FD4BAC224B7E2E /* FitieWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = FitieWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B973DF35446469CCA59AD9C /* FitieWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitieWidgetsBundle.swift; sourceTree = "<group>"; };
 		9BFECC5EFBD89ED880F54729 /* FitieTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FitieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D45293C5DF6861C898F67B /* InsightSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSnapshot.swift; sourceTree = "<group>"; };
@@ -135,7 +137,7 @@
 		BCB9076D4D998005107F0DE3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BE1492BFB830FC0293F97E38 /* InsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightEngine.swift; sourceTree = "<group>"; };
 		BE8C45733D2F60E7CB27572A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		D58A2266AC05568EFE2891E3 /* Fitie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D58A2266AC05568EFE2891E3 /* Fitie.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Fitie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AEBBA4872EFBE973AD2E32 /* FitieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitieApp.swift; sourceTree = "<group>"; };
 		D782FC89556C14ABF984A9B8 /* HealthMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMetric.swift; sourceTree = "<group>"; };
 		D83BF8DF173F3917FE03D07D /* VerificationRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationRule.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				0A19017B709804CB5B43FD39 /* Assets.xcassets */,
 				0CF80AFB34DDAEB0F5E882A2 /* Fitie.entitlements */,
+				5323D85500156CC2D67323E4 /* Fitie.icon */,
 				254F9AAE30CE59C76F5EC595 /* App */,
 				5BA17CDF9398864A353CF8AA /* Health */,
 				C5DCCFD1FF60827F39A2BFB6 /* Insights */,
@@ -419,9 +422,11 @@
 						ProvisioningStyle = Automatic;
 					};
 					1D4CF1805526F35063F948EB = {
+						DevelopmentTeam = ACTN9LPR35;
 						ProvisioningStyle = Automatic;
 					};
 					24E87DB6C38EFF1B5845A7DC = {
+						DevelopmentTeam = ACTN9LPR35;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -453,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0715822D49C308FA40E9E2D6 /* Assets.xcassets in Resources */,
+				D5B7C6A0FFE4FE6F5118CE9C /* Fitie.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,11 +552,10 @@
 		262817FFE15B8D19CD547554 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Fitie;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = N66K6UABPD;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,7 +658,6 @@
 		8BB5DBA866C9A15E4B4DB758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = N66K6UABPD;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = FitieWidgets/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -736,11 +740,10 @@
 		B35E99A34114A74E9302E063 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Fitie;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = N66K6UABPD;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -771,7 +774,6 @@
 		ED3576F5528040FCC2B95288 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = N66K6UABPD;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = FitieWidgets/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
