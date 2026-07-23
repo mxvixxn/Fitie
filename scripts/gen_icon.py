@@ -119,7 +119,56 @@ def build():
     return img.resize((SIZE, SIZE), Image.LANCZOS)
 
 
+# --- layered export for Icon Composer (iOS 26 Liquid Glass) -----------------
+LAYERS_DIR = "docs/icon-layers"
+
+
+def _ring_radii(s):
+    w = int(s * STROKE_FRAC)
+    gap = int(w * GAP_FACTOR)
+    return w, [s * OUTER_R_FRAC - i * gap for i in range(len(RING_SPECS))]
+
+
+def render_single_ring(index):
+    """One colored ring on a transparent RGBA canvas (no track, no background).
+
+    Kept track-free so the system's Liquid Glass material reads cleanly per layer.
+    """
+    s = SIZE * SS
+    img = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+    cx = cy = s / 2
+    w, radii = _ring_radii(s)
+    _, color, sweep = RING_SPECS[index]
+    draw_arc_rounded(draw, cx, cy, radii[index], w, 0, sweep, color + (255,))
+    return img.resize((SIZE, SIZE), Image.LANCZOS)
+
+
+def export_layers(dirpath):
+    """Emit Icon Composer inputs: opaque background + one PNG per ring + combined rings."""
+    os.makedirs(dirpath, exist_ok=True)
+
+    s = SIZE * SS
+    bg = diagonal_gradient(s, BG_TL, BG_BR).resize((SIZE, SIZE), Image.LANCZOS)
+    bg.save(os.path.join(dirpath, "background.png"))
+    print("wrote", os.path.join(dirpath, "background.png"))
+
+    combined = Image.new("RGBA", (SIZE, SIZE), (0, 0, 0, 0))
+    for i, (key, _, _) in enumerate(RING_SPECS):
+        layer = render_single_ring(i)
+        name = f"ring-{key}.png"
+        layer.save(os.path.join(dirpath, name))
+        print("wrote", os.path.join(dirpath, name))
+        combined = Image.alpha_composite(combined, layer)
+    combined.save(os.path.join(dirpath, "rings.png"))
+    print("wrote", os.path.join(dirpath, "rings.png"))
+
+
 def main():
+    if "--layers" in sys.argv:
+        export_layers(LAYERS_DIR)
+        return
+
     icon = build()
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     icon.save(OUT)
