@@ -35,6 +35,7 @@ struct RootView: View {
                 .tabItem { Label("설정", systemImage: "gearshape") }
                 .tag(2)
         }
+        .tabBarMinimizeBehavior(.onScrollDown)
         .tint(Theme.accent)
         .environment(\.locale, Locale(identifier: "ko_KR"))
         .preferredColorScheme(colorScheme)
