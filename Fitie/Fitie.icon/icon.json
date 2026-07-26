@@ -7,7 +7,8 @@
       "layers" : [
         {
           "image-name" : "rings.png",
-          "name" : "rings"
+          "name" : "rings",
+          "opacity" : 1
         },
         {
           "image-name" : "background.png",
