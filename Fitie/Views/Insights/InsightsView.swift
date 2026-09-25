@@ -133,7 +133,7 @@ struct InsightsView: View {
     }
 
     private var longestStreak: Int {
-        habits.map { StreakCalculator.current(for: $0.id, in: results) }.max() ?? 0
+        habits.map { StreakCalculator.longest(for: $0.id, in: results) }.max() ?? 0
     }
 
     private var avgMoodText: String {
