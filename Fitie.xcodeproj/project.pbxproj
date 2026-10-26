@@ -564,6 +564,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = N66K6UABPD;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,6 +667,7 @@
 		8BB5DBA866C9A15E4B4DB758 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = N66K6UABPD;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = FitieWidgets/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -752,6 +754,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fitie/Fitie.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = N66K6UABPD;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -782,6 +785,7 @@
 		ED3576F5528040FCC2B95288 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = N66K6UABPD;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = FitieWidgets/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
